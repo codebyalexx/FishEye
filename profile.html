@@ -28,91 +28,31 @@
     <main class="content">
       <article class="photographer-header">
         <div>
-          <h1>Mimi Keel</h1>
-          <button>Contactez-moi</button>
+          <h1 class="photographer-header-title" id="auto-name">...</h1>
+          <button class="button">Contactez-moi</button>
         </div>
-        <p class="caption">
-          London, UK <span>Voir le beau dans le quotidien</span>
+        <p class="photographer-header-caption" id="auto-caption">
+          ..., ... <span>...</span>
         </p>
-        <ul class="tags">
-          <li>
-            <span class="tag">
-              <a href="#!" class="tag-text">portrait</a>
-            </span>
-          </li>
-          <li>
-            <span class="tag">
-              <a href="#!" class="tag-text">events</a>
-            </span>
-          </li>
-          <li>
-            <span class="tag">
-              <a href="#!" class="tag-text">travel</a>
-            </span>
-          </li>
-          <li>
-            <span class="tag">
-              <a href="#!" class="tag-text">animals</a>
-            </span>
-          </li>
-        </ul>
+        <ul class="photographer-header-tags" id="auto-tags"></ul>
         <img
-          src="/img/Sample Photos/Mimi Keel/Portrait_Nora.jpg"
+          src=""
           alt=""
-          class="user"
+          class="photographer-header-image user user--xl"
+          id="auto-image"
         />
       </article>
       <article class="photographer-medias">
         <div class="filter">
           <label for="filter-selector">Filtrer par</label>
-          <select name="filter-selector" id="filter-selector">
+          <select name="filter-selector" id="filter-selector" class="dropdown">
             <option value="Popularité" selected>Popularité</option>
             <option value="Date">Date</option>
             <option value="Titre">Titre</option>
           </select>
         </div>
         <div class="medias">
-          <ul class="medias-list">
-            <li class="medias-item">
-              <article class="medias-container">
-                <img
-                  src="/img/Sample Photos/Mimi Keel/Animals_Rainbow.jpg"
-                  alt="Arc-en-cie"
-                  class="medias-thumb"
-                />
-                <div class="medias-infos">
-                  <p class="medias-title">Arc-en-cie</p>
-                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
-                </div>
-              </article>
-            </li>
-            <li class="medias-item">
-              <article class="medias-container">
-                <img
-                  src="/img/Sample Photos/Mimi Keel/Travel_Lonesome.jpg"
-                  alt="Solitude"
-                  class="medias-thumb"
-                />
-                <div class="medias-infos">
-                  <p class="medias-title">Solitude</p>
-                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
-                </div>
-              </article>
-            </li>
-            <li class="medias-item">
-              <article class="medias-container">
-                <img
-                  src="/img/Sample Photos/Mimi Keel/Event_SeasideWedding.jpg"
-                  alt=""
-                  class="medias-thumb"
-                />
-                <div class="medias-infos">
-                  <p class="medias-title">Marriage à la mer</p>
-                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
-                </div>
-              </article>
-            </li>
-          </ul>
+          <ul class="medias-list" id="auto-medias"></ul>
         </div>
       </article>
     </main>
