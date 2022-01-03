@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profil - FishEye</title>
+    <link rel="shortcut icon" href="./img/Icons/icon.png" type="image/png" />
+    <link rel="stylesheet" href="./css/main.css" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <a class="logo" href="./index.html">
+        <img
+          src="./img/Icons/logo.png"
+          alt="Icône de FishEye"
+          class="logo-image"
+        />
+      </a>
+    </header>
+
+    <main class="content">
+      <article class="photographer-header">
+        <div>
+          <h1>Mimi Keel</h1>
+          <button>Contactez-moi</button>
+        </div>
+        <p class="caption">
+          London, UK <span>Voir le beau dans le quotidien</span>
+        </p>
+        <ul class="tags">
+          <li>
+            <span class="tag">
+              <a href="#!" class="tag-text">portrait</a>
+            </span>
+          </li>
+          <li>
+            <span class="tag">
+              <a href="#!" class="tag-text">events</a>
+            </span>
+          </li>
+          <li>
+            <span class="tag">
+              <a href="#!" class="tag-text">travel</a>
+            </span>
+          </li>
+          <li>
+            <span class="tag">
+              <a href="#!" class="tag-text">animals</a>
+            </span>
+          </li>
+        </ul>
+        <img
+          src="/img/Sample Photos/Mimi Keel/Portrait_Nora.jpg"
+          alt=""
+          class="user"
+        />
+      </article>
+      <article class="photographer-medias">
+        <div class="filter">
+          <label for="filter-selector">Filtrer par</label>
+          <select name="filter-selector" id="filter-selector">
+            <option value="Popularité" selected>Popularité</option>
+            <option value="Date">Date</option>
+            <option value="Titre">Titre</option>
+          </select>
+        </div>
+        <div class="medias">
+          <ul class="medias-list">
+            <li class="medias-item">
+              <article class="medias-container">
+                <img
+                  src="/img/Sample Photos/Mimi Keel/Animals_Rainbow.jpg"
+                  alt="Arc-en-cie"
+                  class="medias-thumb"
+                />
+                <div class="medias-infos">
+                  <p class="medias-title">Arc-en-cie</p>
+                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
+                </div>
+              </article>
+            </li>
+            <li class="medias-item">
+              <article class="medias-container">
+                <img
+                  src="/img/Sample Photos/Mimi Keel/Travel_Lonesome.jpg"
+                  alt="Solitude"
+                  class="medias-thumb"
+                />
+                <div class="medias-infos">
+                  <p class="medias-title">Solitude</p>
+                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
+                </div>
+              </article>
+            </li>
+            <li class="medias-item">
+              <article class="medias-container">
+                <img
+                  src="/img/Sample Photos/Mimi Keel/Event_SeasideWedding.jpg"
+                  alt=""
+                  class="medias-thumb"
+                />
+                <div class="medias-infos">
+                  <p class="medias-title">Marriage à la mer</p>
+                  <span class="medias-likes">12 <i class="fas fa-heart"></i></span>
+                </div>
+              </article>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </main>
+
+    <script src="/js/app.js"></script>
+    <script src="/js/profile.js"></script>
+  </body>
+</html>

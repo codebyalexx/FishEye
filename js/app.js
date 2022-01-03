@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-function request (url, method = "POST") {
+function request (url, method = "GET") {
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
 

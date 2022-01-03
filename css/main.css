@@ -211,7 +211,6 @@ main {
 }
 .thumb-photographer-about {
   text-align: center;
-  padding: 0 0 15px 0;
 }
 .thumb-photographer-about-city {
   padding-bottom: 3px;
@@ -230,6 +229,7 @@ main {
   margin-block-start: 0;
   margin-block-end: 0;
   font-size: 9px;
+  color: #525252;
 }
 .thumb-photographer-tags {
   padding-inline-start: 0;

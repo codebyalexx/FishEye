@@ -14,8 +14,20 @@ function photographerElementTemplate ({
 
   element.classList.add("photographer-list-item");
 
+  const tagsElement = document.createElement("ul");
+  tagsElement.className = "thumb-photographer-tags";
+
+  tags.forEach((tag) => {
+    const tagElement = document.createElement("li");
+    tagElement.innerHTML = `<span class="tag"
+    ><a href="#!" class="tag-text">#${tag}</a></span
+  >`;
+
+    tagsElement.appendChild(tagElement);
+  });
+
   element.innerHTML = `<article class="thumb-photographer">
-  <a href="./profile.html=photographerid=${id}" class="thumb-photographer-brand">
+  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand">
     <img
       src="./img/Sample Photos/${name}/${thumb}"
       class="user user--xl"
@@ -29,16 +41,9 @@ function photographerElementTemplate ({
     </p>
     <span>${price}€/jour</span>
   </div>
-  <ul class="thumb-photographer-tags">
-    ${tags.forEach(
-      (tag) => `<li>
-    <span class="tag"
-      ><a href="#!" class="tag-text">#${tag}</a></span
-    >
-  </li>`
-    )}
-  </ul>
 </article>`;
+
+  element.appendChild(tagsElement);
 
   return element;
 }
