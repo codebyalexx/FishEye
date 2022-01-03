@@ -1,3 +1,18 @@
 .header {
-    display: flex;
+  @include container;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 40px;
+  margin-bottom: 40px;
+
+  &-title {
+    color: $color-primary-1;
+    font-size: 36px;
+    float: right;
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
 }

@@ -1,16 +1,35 @@
 .tag {
   display: inline-block;
-  border: 0.5px solid #c4c4c4;
+  border: 0.5px solid $tag-border-color;
   border-radius: 11px;
   box-sizing: border-box;
   cursor: pointer;
   margin: 2.5px 4px;
+  background-color: $color-primary-1-background;
+  color: $color-primary-1;
+  transition: all 170ms ease-in-out;
 
   &-text {
     display: block;
     font-size: 12px;
     margin: 2.5px 5px;
     font-weight: 500;
-    color: $color-primary-1;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  &:hover {
+    background-color: $color-primary-1;
+    color: $color-primary-1-background;
+  }
+
+  &--alt {
+    background-color: $color-primary-1;
+    color: $color-primary-1-background;
+    
+    &:hover {
+      background-color: $color-primary-1-background;
+      color: $color-primary-1;
+    }
   }
 }

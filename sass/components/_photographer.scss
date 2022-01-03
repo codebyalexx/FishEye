@@ -16,21 +16,21 @@
 }
 
 .thumb-photographer {
-  width: 250px;
+  width: 100%;
   margin: auto;
 
   &-brand {
-    width: 200px;
     text-decoration: none;
     text-align: center;
-    display: flex;
+    display: block;
     justify-content: center;
     flex-wrap: wrap;
     margin: auto;
 
-    /*img {
+    img {
       align-self: center;
-    }*/
+      max-width: 100%;
+    }
 
     h2 {
       margin-block-start: 0;

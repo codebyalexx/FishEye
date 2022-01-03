@@ -1,3 +1,4 @@
-.content {
-  display: flex;
+main {
+  @include container;
+  margin: 120px auto;
 }
