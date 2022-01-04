@@ -15,16 +15,7 @@ class Lightbox {
     });
   }
 
-  open (targetIndex = 0) {
-    this.close();
-
-    const currentMedia = this.medias[targetIndex];
-
-    if (!currentMedia) return this.close();
-
-    this.currentMedia = currentMedia;
-    this.currentIndex = targetIndex;
-
+  getElement (targetMedia) {
     const lightboxModal = document.createElement("div");
     lightboxModal.className = "lightbox-modal";
 
@@ -46,21 +37,21 @@ class Lightbox {
     lightboxContentContainer.className = "lightbox-dialog-contentbox";
     lightboxDialog.appendChild(lightboxContentContainer);
 
-    if (currentMedia.type === "image") {
+    if (targetMedia.type === "image") {
       const lightboxImage = document.createElement("img");
       lightboxImage.className = "lightbox-dialog-contentbox-image";
-      lightboxImage.src = currentMedia.filename;
-      lightboxImage.alt = currentMedia.alt;
+      lightboxImage.src = targetMedia.filename;
+      lightboxImage.alt = targetMedia.alt;
 
       lightboxContentContainer.appendChild(lightboxImage);
-    } else if (currentMedia.type === "video") {
+    } else if (targetMedia.type === "video") {
       const lightboxVideo = document.createElement("video");
       lightboxVideo.className = "lightbox-dialog-contentbox-video";
       lightboxVideo.controls = true;
       // lightboxVideo.alt = currentMedia.alt;
 
       const lightboxVideoSource = document.createElement("source");
-      lightboxVideoSource.src = currentMedia.filename;
+      lightboxVideoSource.src = targetMedia.filename;
       lightboxVideoSource.type = "video/mp4";
       lightboxVideo.appendChild(lightboxVideoSource);
 
@@ -69,7 +60,7 @@ class Lightbox {
 
     const lightboxTitle = document.createElement("p");
     lightboxTitle.className = "lightbox-dialog-contentbox-title";
-    lightboxTitle.innerText = currentMedia.title;
+    lightboxTitle.innerText = targetMedia.title;
     lightboxContentContainer.appendChild(lightboxTitle);
 
     const lightboxRightContainer = document.createElement("div");
@@ -99,6 +90,21 @@ class Lightbox {
       this.close();
       console.log("oui");
     });
+
+    return lightboxModal;
+  }
+
+  open (targetIndex = 0) {
+    this.close();
+
+    const currentMedia = this.medias[targetIndex];
+
+    if (!currentMedia) return this.close();
+
+    this.currentMedia = currentMedia;
+    this.currentIndex = targetIndex;
+
+    const lightboxModal = this.getElement(currentMedia);
 
     document.body.appendChild(lightboxModal);
 

@@ -3,6 +3,7 @@ const caption = document.querySelector("#auto-caption");
 const tags = document.querySelector("#auto-tags");
 const image = document.querySelector("#auto-image");
 const medias = document.querySelector("#auto-medias");
+const contactButton = document.querySelector("#contact-button");
 
 function getPagePhotographerId () {
   let paramsString = window.location.href.split("?");
@@ -76,6 +77,12 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt }) {
   >`;
 
           tags.appendChild(tagElement);
+        });
+
+        // eslint-disable-next-line no-unused-vars
+        const contactform = new ContactForm({ // eslint-disable-line no-undef
+          name: targetProfile.name,
+          handler: contactButton
         });
 
         const lightboxMedias = [];
