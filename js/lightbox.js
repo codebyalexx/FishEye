@@ -3,15 +3,31 @@ class Lightbox {
   constructor ({ medias = [] }) {
     this.currentIndex = 0;
     this.medias = medias;
+    this.listeners = {};
 
-    console.log(medias);
+    this.updateHandlers();
+  }
 
+  setMedias (newMedias) {
+    this.medias = newMedias;
+  }
+
+  getMedias () {
+    return this.medias;
+  }
+
+  updateHandlers () {
     document.querySelectorAll("[open-lightbox]").forEach((lightboxHandler) => {
-      lightboxHandler.addEventListener("click", (e) => {
-        const parsedSrc = e.target.src.replaceAll("%20", " ");
+      const parsedSrc = lightboxHandler.src.replaceAll("%20", " ");
+
+      this.listeners[parsedSrc] && lightboxHandler.removeEventListener("click", this.listeners[parsedSrc]);
+
+      this.listeners[parsedSrc] = () => {
         const targetMedia = this.medias.find((m) => parsedSrc.includes(m.filename));
         this.open(this.medias.indexOf(targetMedia));
-      });
+      };
+
+      lightboxHandler.addEventListener("click", this.listeners[parsedSrc]);
     });
   }
 
@@ -88,7 +104,6 @@ class Lightbox {
 
     lightboxClose.addEventListener("click", (e) => {
       this.close();
-      console.log("oui");
     });
 
     return lightboxModal;

@@ -5,6 +5,9 @@ const image = document.querySelector("#auto-image");
 const medias = document.querySelector("#auto-medias");
 const contactButton = document.querySelector("#contact-button");
 
+// eslint-disable-next-line no-undef
+const lightbox = new Lightbox({ });
+
 function getPagePhotographerId () {
   let paramsString = window.location.href.split("?");
   paramsString.shift();
@@ -15,9 +18,12 @@ function getPagePhotographerId () {
   return searchParams.get("photographerid").toString();
 }
 
-function mediaElementTemplate ({ title, likes, name, filename, type, alt }) {
+function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }) {
   const element = document.createElement("li");
   element.className = "medias-item";
+  element.setAttribute("filter-title", title);
+  element.setAttribute("filter-likes", likes);
+  element.setAttribute("filter-date", date);
 
   element.innerHTML = `<article class="medias-container">
   <div class="medias-infos">
@@ -95,7 +101,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt }) {
               likes: media.likes,
               name: targetProfile.name,
               title: media.title,
-              alt: media.alt
+              alt: media.alt,
+              date: media.date
             })
           );
 
@@ -107,16 +114,18 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt }) {
             ),
             type: media.image ? "image" : "video",
             title: media.title,
-            alt: media.alt
+            alt: media.alt,
+            likes: media.likes,
+            date: media.date
           };
 
           lightboxMedias.push(lightboxMediaParameters);
         });
 
-        // eslint-disable-next-line no-unused-vars
-        const lightbox = new Lightbox({ // eslint-disable-line no-undef
-          medias: lightboxMedias
-        });
+        lightbox.setMedias(lightboxMedias);
+        lightbox.updateHandlers();
+        // eslint-disable-next-line no-undef
+        applyFilter("likes");
       } catch (e) {
         console.log(e);
         alert("Une erreur est survenue lors du chargement du profil. Code 1");
