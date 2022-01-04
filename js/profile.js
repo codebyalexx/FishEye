@@ -23,6 +23,7 @@ function mediaElementTemplate ({ title, likes, name, image }) {
     src="/img/Sample Photos/${name}/${image}"
     alt="${title}"
     class="medias-thumb"
+    open-lightbox
   />
   <div class="medias-infos">
     <p class="medias-infos-title">${title}</p>
@@ -59,13 +60,33 @@ function mediaElementTemplate ({ title, likes, name, image }) {
           tags.appendChild(tagElement);
         });
 
+        const lightboxMedias = [];
+
         targetMedias.forEach((media) => {
-          medias.appendChild(mediaElementTemplate({
-            image: media.image,
-            likes: media.likes,
-            name: targetProfile.name,
-            title: media.title
-          }));
+          medias.appendChild(
+            mediaElementTemplate({
+              image: media.image,
+              likes: media.likes,
+              name: targetProfile.name,
+              title: media.title
+            })
+          );
+
+          const lightboxMediaParameters = {
+            filename: (
+              `/img/Sample Photos/${targetProfile.name}/${
+                media.image || media.video
+              }`
+            ),
+            type: media.image ? "image" : "video"
+          };
+
+          lightboxMedias.push(lightboxMediaParameters);
+        });
+
+        // eslint-disable-next-line no-unused-vars
+        const lightbox = new Lightbox({ // eslint-disable-line no-undef
+          medias: lightboxMedias
         });
       } catch (e) {
         console.log(e);

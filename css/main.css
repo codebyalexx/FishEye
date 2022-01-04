@@ -180,6 +180,66 @@ main {
   background-position-y: 13px;
 }
 
+.lightbox-modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+  justify-content: center;
+  align-items: center;
+}
+.lightbox-dialog {
+  width: 1200px;
+  height: 1000px;
+  display: flex;
+}
+.lightbox-dialog-previousbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 100%;
+}
+.lightbox-dialog-contentbox {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  width: calc(100% - 160px);
+  height: 100%;
+  padding: 50px 0;
+}
+.lightbox-dialog-contentbox-image {
+  width: 100%;
+  object-fit: cover;
+}
+.lightbox-dialog-contentbox-video {
+  width: 100%;
+}
+.lightbox-dialog-nextbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 80px;
+  height: 100%;
+}
+.lightbox-dialog-previous, .lightbox-dialog-next, .lightbox-dialog-close {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  color: #901c1c;
+  font-weight: 700;
+  font-size: 48px;
+  cursor: pointer;
+}
+.lightbox-dialog-close {
+  position: absolute;
+  top: 45px;
+}
+
 .logo-image {
   width: 200px;
   height: 50px;

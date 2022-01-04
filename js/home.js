@@ -8,7 +8,7 @@ function photographerElementTemplate ({
   tags,
   tagline,
   price,
-  thumb
+  portrait
 }) {
   const element = document.createElement("li");
 
@@ -29,7 +29,7 @@ function photographerElementTemplate ({
   element.innerHTML = `<article class="thumb-photographer">
   <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand">
     <img
-      src="./img/Sample Photos/${name}/${thumb}"
+      src="./img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"
     />
     <h2>${name}</h2>
@@ -66,7 +66,7 @@ function photographerElementTemplate ({
               tags: photographer.tags,
               tagline: photographer.tagline,
               price: photographer.price,
-              thumb: photographer.thumb
+              portrait: photographer.portrait
             })
           );
         });
