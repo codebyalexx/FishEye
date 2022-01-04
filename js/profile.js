@@ -14,22 +14,39 @@ function getPagePhotographerId () {
   return searchParams.get("photographerid").toString();
 }
 
-function mediaElementTemplate ({ title, likes, name, image }) {
+function mediaElementTemplate ({ title, likes, name, filename, type, alt }) {
   const element = document.createElement("li");
   element.className = "medias-item";
 
   element.innerHTML = `<article class="medias-container">
-  <img
-    src="/img/Sample Photos/${name}/${image}"
-    alt="${title}"
-    class="medias-thumb"
-    open-lightbox
-  />
   <div class="medias-infos">
     <p class="medias-infos-title">${title}</p>
     <span class="medias-infos-likes">${likes} <i class="fas fa-heart"></i></span>
   </div>
 </article>`;
+
+  if (type === "image") {
+    const imageElement = document.createElement("img");
+    imageElement.src = `/img/Sample Photos/${name}/${filename}`;
+    imageElement.alt = alt;
+    imageElement.className = "medias-thumb";
+    imageElement.setAttribute("open-lightbox", true);
+
+    element.querySelector(".medias-container").prepend(imageElement);
+  } else if (type === "video") {
+    const videoElement = document.createElement("video");
+    videoElement.src = `/img/Sample Photos/${name}/${filename}`;
+    videoElement.setAttribute("open-lightbox", true);
+    videoElement.className = "medias-thumb";
+    // videoElement.alt = alt;
+
+    const videoSourceElement = document.createElement("source");
+    videoSourceElement.src = `/img/Sample Photos/${name}/${filename}`;
+    videoSourceElement.type = "video/mp4";
+    videoElement.appendChild(videoSourceElement);
+
+    element.querySelector(".medias-container").prepend(videoElement);
+  } else return element;
 
   return element;
 }
@@ -51,6 +68,7 @@ function mediaElementTemplate ({ title, likes, name, image }) {
         pName.innerText = targetProfile.name;
         caption.innerHTML = `${targetProfile.city}, ${targetProfile.country} <span>${targetProfile.tagline}</span>`;
         image.src = `/img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
+        image.alt = targetProfile.alt;
         targetProfile.tags.forEach((t) => {
           const tagElement = document.createElement("li");
           tagElement.innerHTML = `<span class="tag"
@@ -65,10 +83,12 @@ function mediaElementTemplate ({ title, likes, name, image }) {
         targetMedias.forEach((media) => {
           medias.appendChild(
             mediaElementTemplate({
-              image: media.image,
+              filename: media.image || media.video,
+              type: media.image ? "image" : "video",
               likes: media.likes,
               name: targetProfile.name,
-              title: media.title
+              title: media.title,
+              alt: media.alt
             })
           );
 
@@ -78,7 +98,9 @@ function mediaElementTemplate ({ title, likes, name, image }) {
                 media.image || media.video
               }`
             ),
-            type: media.image ? "image" : "video"
+            type: media.image ? "image" : "video",
+            title: media.title,
+            alt: media.alt
           };
 
           lightboxMedias.push(lightboxMediaParameters);

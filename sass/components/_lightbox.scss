@@ -26,19 +26,27 @@
 
     &-contentbox {
       display: flex;
-      justify-content: center;
       align-self: center;
+      flex-wrap: wrap;
       width: calc(100% - 160px);
       height: 100%;
       padding: 50px 0;
 
-      &-image {
-        width: 100%;
-        object-fit: cover;
-      }
-
+      &-image,
       &-video {
         width: 100%;
+        object-fit: cover;
+        max-height: 900px;
+      }
+
+      &-title {
+        color: $color-primary-1;
+        height: 40px;
+        font-size: 24px;
+        align-self: start;
+        margin-block-start: 0;
+        margin-block-end: 0;
+        padding: 10px 0;
       }
     }
 
@@ -68,4 +76,8 @@
       top: 45px;
     }
   }
+}
+
+#detach-button-host {
+  display: none!important;
 }

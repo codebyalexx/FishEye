@@ -36,10 +36,11 @@ class Lightbox {
     lightboxLeftContainer.className = "lightbox-dialog-previousbox";
     lightboxDialog.appendChild(lightboxLeftContainer);
 
-    const lightboxPrevious = document.createElement("button");
+    const lightboxPrevious = document.createElement("a");
     lightboxPrevious.innerHTML = "<i class='far fa-angle-left'></i>";
     lightboxPrevious.className = "lightbox-dialog-previous";
-    lightboxLeftContainer.appendChild(lightboxPrevious);
+    this.medias[this.currentIndex - 1] !== undefined &&
+      lightboxLeftContainer.appendChild(lightboxPrevious);
 
     const lightboxContentContainer = document.createElement("div");
     lightboxContentContainer.className = "lightbox-dialog-contentbox";
@@ -49,12 +50,14 @@ class Lightbox {
       const lightboxImage = document.createElement("img");
       lightboxImage.className = "lightbox-dialog-contentbox-image";
       lightboxImage.src = currentMedia.filename;
+      lightboxImage.alt = currentMedia.alt;
 
       lightboxContentContainer.appendChild(lightboxImage);
     } else if (currentMedia.type === "video") {
       const lightboxVideo = document.createElement("video");
       lightboxVideo.className = "lightbox-dialog-contentbox-video";
       lightboxVideo.controls = true;
+      // lightboxVideo.alt = currentMedia.alt;
 
       const lightboxVideoSource = document.createElement("source");
       lightboxVideoSource.src = currentMedia.filename;
@@ -64,16 +67,22 @@ class Lightbox {
       lightboxContentContainer.appendChild(lightboxVideo);
     } else return this.close();
 
+    const lightboxTitle = document.createElement("p");
+    lightboxTitle.className = "lightbox-dialog-contentbox-title";
+    lightboxTitle.innerText = currentMedia.title;
+    lightboxContentContainer.appendChild(lightboxTitle);
+
     const lightboxRightContainer = document.createElement("div");
     lightboxRightContainer.className = "lightbox-dialog-nextbox";
     lightboxDialog.appendChild(lightboxRightContainer);
 
-    const lightboxNext = document.createElement("button");
+    const lightboxNext = document.createElement("a");
     lightboxNext.innerHTML = "<i class='far fa-angle-right'></i>";
     lightboxNext.className = "lightbox-dialog-next";
-    lightboxRightContainer.appendChild(lightboxNext);
+    this.medias[this.currentIndex + 1] !== undefined &&
+      lightboxRightContainer.appendChild(lightboxNext);
 
-    const lightboxClose = document.createElement("a");
+    const lightboxClose = document.createElement("button");
     lightboxClose.innerHTML = "<i class='far fa-times'></i>";
     lightboxClose.className = "lightbox-dialog-close";
     lightboxRightContainer.appendChild(lightboxClose);

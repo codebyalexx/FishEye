@@ -8,7 +8,8 @@ function photographerElementTemplate ({
   tags,
   tagline,
   price,
-  portrait
+  portrait,
+  alt
 }) {
   const element = document.createElement("li");
 
@@ -31,6 +32,7 @@ function photographerElementTemplate ({
     <img
       src="./img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"
+      alt="${alt}"
     />
     <h2>${name}</h2>
   </a>
@@ -66,7 +68,8 @@ function photographerElementTemplate ({
               tags: photographer.tags,
               tagline: photographer.tagline,
               price: photographer.price,
-              portrait: photographer.portrait
+              portrait: photographer.portrait,
+              alt: photographer.alt
             })
           );
         });
