@@ -18,32 +18,40 @@ function photographerElementTemplate ({
   const tagsElement = document.createElement("ul");
   tagsElement.className = "thumb-photographer-tags";
 
-  tags.forEach((tag) => {
+  for (let index = 0; index < tags.length; index++) {
+    const tag = tags[index];
+    // eslint-disable-next-line no-undef
+    const tabindex = getLatestTabindex() + 6 + index;
+
     const tagElement = document.createElement("li");
     tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text">#${tag}</a></span
+    ><a href="#!" class="tag-text" tabindex="${tabindex}">#${tag}</a></span
   >`;
 
     tagsElement.appendChild(tagElement);
-  });
+  }
+
+  /* eslint-disable no-undef */
 
   element.innerHTML = `<article class="thumb-photographer">
-  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand">
+  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="${getLatestTabindex() + 1}">
     <img
       src="./img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"
       alt="${alt}"
     />
-    <h2>${name}</h2>
+    <h2 tabindex="${getLatestTabindex() + 2}">${name}</h2>
   </a>
   <div class="thumb-photographer-about">
-    <p class="thumb-photographer-about-city">${city}, ${country}</p>
-    <p class="thumb-photographer-about-caption">
+    <p class="thumb-photographer-about-city" tabindex="${getLatestTabindex() + 3}">${city}, ${country}</p>
+    <p class="thumb-photographer-about-caption" tabindex="${getLatestTabindex() + 4}">
       ${tagline}
     </p>
-    <span>${price}€/jour</span>
+    <span tabindex="${getLatestTabindex() + 5}">${price}€/jour</span>
   </div>
 </article>`;
+
+  /* eslint-enable no-undef */
 
   element.appendChild(tagsElement);
 

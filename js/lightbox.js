@@ -46,6 +46,7 @@ class Lightbox {
     const lightboxPrevious = document.createElement("a");
     lightboxPrevious.innerHTML = "<i class='far fa-angle-left'></i>";
     lightboxPrevious.className = "lightbox-dialog-previous";
+    lightboxPrevious.tabIndex = 0;
     this.medias[this.currentIndex - 1] !== undefined &&
       lightboxLeftContainer.appendChild(lightboxPrevious);
 
@@ -58,6 +59,7 @@ class Lightbox {
       lightboxImage.className = "lightbox-dialog-contentbox-image";
       lightboxImage.src = targetMedia.filename;
       lightboxImage.alt = targetMedia.alt;
+      lightboxImage.tabIndex = 1;
 
       lightboxContentContainer.appendChild(lightboxImage);
     } else if (targetMedia.type === "video") {
@@ -65,6 +67,7 @@ class Lightbox {
       lightboxVideo.className = "lightbox-dialog-contentbox-video";
       lightboxVideo.controls = true;
       // lightboxVideo.alt = currentMedia.alt;
+      lightboxVideo.tabIndex = 1;
 
       const lightboxVideoSource = document.createElement("source");
       lightboxVideoSource.src = targetMedia.filename;
@@ -77,6 +80,7 @@ class Lightbox {
     const lightboxTitle = document.createElement("p");
     lightboxTitle.className = "lightbox-dialog-contentbox-title";
     lightboxTitle.innerText = targetMedia.title;
+    lightboxTitle.tabIndex = 2;
     lightboxContentContainer.appendChild(lightboxTitle);
 
     const lightboxRightContainer = document.createElement("div");
@@ -86,12 +90,14 @@ class Lightbox {
     const lightboxNext = document.createElement("a");
     lightboxNext.innerHTML = "<i class='far fa-angle-right'></i>";
     lightboxNext.className = "lightbox-dialog-next";
+    lightboxNext.tabIndex = 3;
     this.medias[this.currentIndex + 1] !== undefined &&
       lightboxRightContainer.appendChild(lightboxNext);
 
     const lightboxClose = document.createElement("button");
     lightboxClose.innerHTML = "<i class='far fa-times'></i>";
     lightboxClose.className = "lightbox-dialog-close";
+    lightboxClose.tabIndex = 4;
     lightboxRightContainer.appendChild(lightboxClose);
 
     lightboxPrevious.addEventListener("click", (e) => {
@@ -112,6 +118,16 @@ class Lightbox {
   open (targetIndex = 0) {
     this.close();
 
+    document.querySelectorAll("body *").forEach((domElement) => {
+      if (domElement.tabIndex !== -1) {
+        const tabIndex = domElement.tabIndex;
+
+        domElement.setAttribute("stored-tabindex", tabIndex);
+
+        domElement.tabIndex = -1;
+      }
+    });
+
     const currentMedia = this.medias[targetIndex];
 
     if (!currentMedia) return this.close();
@@ -128,6 +144,14 @@ class Lightbox {
 
   close () {
     this.lightboxElement && this.lightboxElement.remove();
+
+    document.querySelectorAll("body *").forEach((domElement) => {
+      if (domElement.hasAttribute("stored-tabindex")) {
+        domElement.tabIndex = domElement.getAttribute("stored-tabindex");
+
+        domElement.removeAttribute("stored-tabindex");
+      }
+    });
   }
 
   next () {

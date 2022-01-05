@@ -25,12 +25,14 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
   element.setAttribute("filter-likes", likes);
   element.setAttribute("filter-date", date);
 
+  /* eslint-disable no-undef */
   element.innerHTML = `<article class="medias-container">
   <div class="medias-infos">
-    <p class="medias-infos-title">${title}</p>
-    <span class="medias-infos-likes">${likes} <i class="fas fa-heart"></i></span>
+    <p class="medias-infos-title" tabindex="${getLatestTabindex() + 2}">${title}</p>
+    <span class="medias-infos-likes" tabindex="${getLatestTabindex() + 3}">${likes} <i class="fas fa-heart"></i></span>
   </div>
 </article>`;
+  /* eslint-enable no-undef */
 
   if (type === "image") {
     const imageElement = document.createElement("img");
@@ -38,6 +40,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     imageElement.alt = alt;
     imageElement.className = "medias-thumb";
     imageElement.setAttribute("open-lightbox", true);
+    // eslint-disable-next-line no-undef
+    imageElement.tabIndex = getLatestTabindex() + 1;
 
     element.querySelector(".medias-container").prepend(imageElement);
   } else if (type === "video") {
@@ -46,6 +50,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     videoElement.setAttribute("open-lightbox", true);
     videoElement.className = "medias-thumb";
     // videoElement.alt = alt;
+    // eslint-disable-next-line no-undef
+    videoElement.tabIndex = getLatestTabindex() + 1;
 
     const videoSourceElement = document.createElement("source");
     videoSourceElement.src = `/img/Sample Photos/${name}/${filename}`;
@@ -78,12 +84,19 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
         image.alt = targetProfile.alt;
         targetProfile.tags.forEach((t) => {
           const tagElement = document.createElement("li");
+          /* eslint-disable no-undef */
           tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text">#${t}</a></span
+    ><a href="#!" class="tag-text" tabindex="${getLatestTabindex() + 1}">#${t}</a></span
   >`;
+          /* eslint-enable no-undef */
 
           tags.appendChild(tagElement);
         });
+        // eslint-disable-next-line no-undef
+        image.tabIndex = getLatestTabindex() + 1;
+
+        // eslint-disable-next-line no-undef
+        document.querySelector("#filter-selector").tabIndex = getLatestTabindex() + 1;
 
         // eslint-disable-next-line no-unused-vars
         const contactform = new ContactForm({ // eslint-disable-line no-undef

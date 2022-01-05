@@ -27,36 +27,6 @@ body {
   margin-top: 40px;
   margin-bottom: 40px;
 }
-@media screen and (max-width: 1500px) {
-  .header {
-    max-width: 1100px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .header {
-    max-width: 800px;
-  }
-}
-@media screen and (max-width: 900px) {
-  .header {
-    max-width: 600px;
-  }
-}
-@media screen and (max-width: 700px) {
-  .header {
-    max-width: 400px;
-  }
-}
-@media screen and (max-width: 500px) {
-  .header {
-    max-width: 250px;
-  }
-}
-@media screen and (max-width: 300px) {
-  .header {
-    max-width: calc(100% - var(20px) * 2);
-  }
-}
 .header-title {
   color: #901c1c;
   font-size: 36px;
@@ -71,37 +41,6 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
-@media screen and (max-width: 1500px) {
-  main {
-    max-width: 1100px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  main {
-    max-width: 800px;
-  }
-}
-@media screen and (max-width: 900px) {
-  main {
-    max-width: 600px;
-  }
-}
-@media screen and (max-width: 700px) {
-  main {
-    max-width: 400px;
-  }
-}
-@media screen and (max-width: 500px) {
-  main {
-    max-width: 250px;
-  }
-}
-@media screen and (max-width: 300px) {
-  main {
-    max-width: calc(100% - var(20px) * 2);
-  }
-}
-
 .navbar-items {
   list-style: none;
   display: flex;
@@ -117,7 +56,6 @@ main {
   font-size: 18px;
   transition: all 200ms ease-in-out;
   border: none;
-  outline: none;
   cursor: pointer;
   font-weight: 700;
 }
@@ -131,37 +69,6 @@ main {
   margin-left: auto;
   margin-right: auto;
 }
-@media screen and (max-width: 1500px) {
-  .container {
-    max-width: 1100px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .container {
-    max-width: 800px;
-  }
-}
-@media screen and (max-width: 900px) {
-  .container {
-    max-width: 600px;
-  }
-}
-@media screen and (max-width: 700px) {
-  .container {
-    max-width: 400px;
-  }
-}
-@media screen and (max-width: 500px) {
-  .container {
-    max-width: 250px;
-  }
-}
-@media screen and (max-width: 300px) {
-  .container {
-    max-width: calc(100% - var(20px) * 2);
-  }
-}
-
 .dropdown {
   font-weight: 700;
   font-size: 18px;
@@ -169,7 +76,6 @@ main {
   background-color: #901c1c;
   border: none;
   border-radius: 5px;
-  outline: none;
   padding: 15px 25px 15px 10px;
   appearance: none;
   cursor: pointer;
@@ -455,7 +361,6 @@ main {
   border-radius: 5px;
   font-size: 36px;
   padding: 25px 20px;
-  outline: none;
 }
 
 .user {

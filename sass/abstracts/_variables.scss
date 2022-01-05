@@ -7,3 +7,10 @@ $color-secondary-1-bg: #fafafa;
 $color-secondary-2: #901c1c;
 
 $tag-border-color: #c4c4c4;
+
+$breakpoints: (
+  mobile: 480px,
+  tablet: 760px,
+  laptop: 1024px,
+  desktop: 1200px
+);

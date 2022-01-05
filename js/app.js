@@ -28,3 +28,16 @@ function request (url, method = "GET") {
     req.send();
   });
 }
+
+// eslint-disable-next-line no-unused-vars
+function getLatestTabindex () {
+  let picked = -1;
+
+  document.querySelectorAll("body *").forEach((domElement) => {
+    const tabIndex = domElement.tabIndex;
+
+    picked = picked < tabIndex ? tabIndex : picked;
+  });
+
+  return picked;
+}
