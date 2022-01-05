@@ -1,3 +1,11 @@
 main.homepage {
-    margin: 120px auto;
+  margin: 120px auto;
+
+  @include tablet-only {
+    margin: 60px auto;
+  }
+
+  @include mobile-only {
+    margin: 30px auto;
+  }
 }

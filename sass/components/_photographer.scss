@@ -3,14 +3,34 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-inline-start: 0;
   width: 100%;
 
   &-item {
     flex: 1 0 33%;
     width: 33%;
 
+    @include laptop-only{
+      flex: 1 0 50%;
+      width: 50%;
+
+      &:nth-child(n+3) {
+        margin-top: 80px;
+      }
+    }
+
     &:nth-child(n+4) {
       margin-top: 80px;
+    }
+
+    @include tablet-only{
+      flex: 1 0 100%;
+      width: 100%;
+      margin-top: 80px;
+
+      &:nth-child(0){
+        margin-top: 0;
+      }
     }
   }
 }
@@ -91,6 +111,19 @@
     min-width: 500px;
     max-width: 700px;
     margin-right: 200px;
+
+    @include desktop-only{
+      max-width: 600px;
+    }
+
+    @include laptop-only{
+      .button {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translate(-50%, 0);
+      }
+    }
   }
 
   &-title {
@@ -98,6 +131,10 @@
     font-size: 64px;
     margin-block-start: 0;
     margin-block-end: 0;
+
+    @include tablet-only {
+      font-size: 36px;
+    }
   }
 
   &-caption {
@@ -122,6 +159,11 @@
     position: absolute;
     top: 50px;
     right: 50px;
+
+    @include tablet-only{
+      height: 100px!important;
+      width: 100px!important;
+    }
   }
 }
 
@@ -153,6 +195,22 @@
 
     &-item {
       width: 33%;
+
+      @include desktop-only{
+        width: 50%;
+
+        &:nth-child(n+3) {
+          margin-top: 30px;
+        }
+      }
+
+      @include tablet-only{
+        width: 100%;
+
+        &:nth-child(n+2) {
+          margin-top: 30px;
+        }
+      }
 
       &:nth-child(n+4) {
         margin-top: 30px;
