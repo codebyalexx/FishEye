@@ -85,9 +85,13 @@ class ContactForm {
     this.form = this.getElement();
 
     document.body.appendChild(this.form);
+
+    document.body.style.position = "fixed";
   }
 
   close () {
     this.form && this.form.remove();
+
+    document.body.style.position = "auto";
   }
 }

@@ -139,6 +139,8 @@ class Lightbox {
 
     document.body.appendChild(lightboxModal);
 
+    document.body.style.position = "fixed";
+
     this.lightboxElement = lightboxModal;
   }
 
@@ -152,6 +154,8 @@ class Lightbox {
         domElement.removeAttribute("stored-tabindex");
       }
     });
+
+    document.body.style.position = "auto";
   }
 
   next () {

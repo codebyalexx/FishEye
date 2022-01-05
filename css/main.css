@@ -10,6 +10,10 @@ body {
   height: 100%;
 }
 
+html, body {
+  overflow-x: hidden;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   font-weight: 400;
@@ -215,6 +219,7 @@ main {
   width: 1200px;
   height: 1000px;
   display: flex;
+  z-index: 999;
 }
 .lightbox-dialog-previousbox {
   display: flex;
@@ -375,6 +380,16 @@ main {
   padding: 60px 35px;
   position: relative;
 }
+@media screen and (max-width: 760px) {
+  .photographer-header {
+    padding: 30px 20px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .photographer-header {
+    padding: 15px;
+  }
+}
 .photographer-header div {
   display: flex;
   justify-content: space-between;
@@ -405,6 +420,12 @@ main {
 @media screen and (max-width: 760px) {
   .photographer-header-title {
     font-size: 36px;
+    padding-right: 160px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .photographer-header-title {
+    padding-right: 90px;
   }
 }
 .photographer-header-caption {
@@ -422,6 +443,11 @@ main {
   margin-block-start: 0;
   margin-block-end: 0;
 }
+@media screen and (max-width: 760px) {
+  .photographer-header-tags {
+    flex-wrap: wrap;
+  }
+}
 .photographer-header-image {
   position: absolute;
   top: 50px;
@@ -431,6 +457,19 @@ main {
   .photographer-header-image {
     height: 100px !important;
     width: 100px !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .photographer-header-image {
+    top: 10px;
+    right: 10px;
+    height: 70px !important;
+    width: 70px !important;
+  }
+}
+@media screen and (max-width: 325px) {
+  .photographer-header-image {
+    display: none;
   }
 }
 
@@ -562,13 +601,21 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: white;
+  background-color: #c4c4c457;
 }
 .contactform-modal {
   width: 700px;
   padding: 35px 35px;
   background-color: #d3573c;
   position: relative;
+  z-index: 999;
+}
+@media screen and (max-width: 760px) {
+  .contactform-modal {
+    overflow-y: scroll;
+    width: 100%;
+    height: 100%;
+  }
 }
 .contactform-modal-title {
   font-weight: 400;
@@ -576,6 +623,12 @@ main {
   margin-block-start: 0;
   margin-block-end: 0;
   line-height: 60px;
+}
+@media screen and (max-width: 760px) {
+  .contactform-modal-title {
+    font-size: 36px;
+    line-height: 48px;
+  }
 }
 .contactform-modal-close {
   position: absolute;
@@ -593,14 +646,32 @@ main {
   padding: 20px 50px;
   margin-top: 25px;
 }
+@media screen and (max-width: 760px) {
+  .contactform-modal-button {
+    margin: 25px 50%;
+    transform: translate(-50%, 0);
+    padding: 5px 15px;
+  }
+}
 .contactform-modal-label {
   display: block;
   color: #312E2E;
   font-size: 36px;
   margin-top: 5px;
 }
+@media screen and (max-width: 760px) {
+  .contactform-modal-label {
+    font-size: 24px;
+  }
+}
 .contactform-modal-field {
   display: block;
+}
+@media screen and (max-width: 760px) {
+  .contactform-modal-field {
+    font-size: 24px;
+    padding: 10px;
+  }
 }
 
 main.homepage {
