@@ -28,8 +28,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
   /* eslint-disable no-undef */
   element.innerHTML = `<article class="medias-container">
   <div class="medias-infos">
-    <p class="medias-infos-title" tabindex="0">${title}</p>
-    <span class="medias-infos-likes" tabindex="0">${likes} <i class="fas fa-heart"></i></span>
+    <p class="medias-infos-title" tabindex="0" lang="en">${title}</p>
+    <span class="medias-infos-likes" tabindex="0" aria-label="${likes} mentions j'aime">${likes} <i class="fas fa-heart"></i></span>
   </div>
 </article>`;
   /* eslint-enable no-undef */
@@ -86,7 +86,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           const tagElement = document.createElement("li");
           /* eslint-disable no-undef */
           tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text" tabindex="0">#${t}</a></span
+    ><a href="#!" class="tag-text" tabindex="0" lang="en">#${t}</a></span
   >`;
           /* eslint-enable no-undef */
 

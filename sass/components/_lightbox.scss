@@ -17,12 +17,21 @@
     display: flex;
     z-index: 999;
 
+    @include tablet-only{
+      height: 40%;
+      width: 95%;
+    }
+
     &-previousbox {
       display: flex;
       justify-content: center;
       align-items: center;
       width: 80px;
       height: 100%;
+
+      @include tablet-only{
+        width: 40px;
+      }
     }
 
     &-contentbox {
@@ -33,11 +42,19 @@
       height: 100%;
       padding: 50px 0;
 
+      @include tablet-only{
+        width: calc(100% - 80px);
+      }
+
       &-image,
       &-video {
         width: 100%;
-        object-fit: cover;
-        max-height: 900px;
+        object-fit: scale-down;
+        
+        @include tablet-only{
+          height: 100%;
+          object-fit: cover;
+        }
       }
 
       &-title {
@@ -58,6 +75,10 @@
       position: relative;
       width: 80px;
       height: 100%;
+
+      @include tablet-only{
+        width: 40px;
+      }
     }
 
     &-previous,
@@ -73,6 +94,10 @@
       
       &:active:focus {
         outline: solid;
+      }
+
+      @include tablet-only{
+        font-size: 36px;
       }
     }
 

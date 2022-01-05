@@ -23,7 +23,7 @@ function photographerElementTemplate ({
 
     const tagElement = document.createElement("li");
     tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text" tabindex="0">#${tag}</a></span
+    ><a href="#!" class="tag-text" tabindex="0" lang="en">#${tag}</a></span
   >`;
 
     tagsElement.appendChild(tagElement);
@@ -32,7 +32,7 @@ function photographerElementTemplate ({
   /* eslint-disable no-undef */
 
   element.innerHTML = `<article class="thumb-photographer">
-  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="0">
+  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="0" aria-label="Accéder au profil de ${name}">
     <img
       src="./img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"

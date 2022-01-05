@@ -248,6 +248,10 @@
     &-container {
       width: 350px;
       margin: auto;
+
+      @include tablet-only{
+        width: 100%;
+      }
     }
 
     &-thumb {
@@ -255,6 +259,7 @@
       height: 300px;
       object-fit: cover;
       cursor: pointer;
+      border-radius: 5px;
     }
 
     &-infos {

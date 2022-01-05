@@ -47,6 +47,7 @@ class Lightbox {
     lightboxPrevious.innerHTML = "<i class='far fa-angle-left'></i>";
     lightboxPrevious.className = "lightbox-dialog-previous";
     lightboxPrevious.tabIndex = 0;
+    lightboxPrevious.ariaLabel = "Image précédente";
     this.medias[this.currentIndex - 1] !== undefined &&
       lightboxLeftContainer.appendChild(lightboxPrevious);
 
@@ -91,6 +92,7 @@ class Lightbox {
     lightboxNext.innerHTML = "<i class='far fa-angle-right'></i>";
     lightboxNext.className = "lightbox-dialog-next";
     lightboxNext.tabIndex = 0;
+    lightboxNext.ariaLabel = "Image suivante";
     this.medias[this.currentIndex + 1] !== undefined &&
       lightboxRightContainer.appendChild(lightboxNext);
 
@@ -98,6 +100,7 @@ class Lightbox {
     lightboxClose.innerHTML = "<i class='far fa-times'></i>";
     lightboxClose.className = "lightbox-dialog-close";
     lightboxClose.tabIndex = 0;
+    lightboxClose.ariaLabel = "Fermer la fenêtre";
     lightboxRightContainer.appendChild(lightboxClose);
 
     lightboxPrevious.addEventListener("click", (e) => {
