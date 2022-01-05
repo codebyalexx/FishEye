@@ -28,8 +28,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
   /* eslint-disable no-undef */
   element.innerHTML = `<article class="medias-container">
   <div class="medias-infos">
-    <p class="medias-infos-title" tabindex="${getLatestTabindex() + 2}">${title}</p>
-    <span class="medias-infos-likes" tabindex="${getLatestTabindex() + 3}">${likes} <i class="fas fa-heart"></i></span>
+    <p class="medias-infos-title" tabindex="0">${title}</p>
+    <span class="medias-infos-likes" tabindex="0">${likes} <i class="fas fa-heart"></i></span>
   </div>
 </article>`;
   /* eslint-enable no-undef */
@@ -41,7 +41,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     imageElement.className = "medias-thumb";
     imageElement.setAttribute("open-lightbox", true);
     // eslint-disable-next-line no-undef
-    imageElement.tabIndex = getLatestTabindex() + 1;
+    imageElement.tabIndex = 0;
 
     element.querySelector(".medias-container").prepend(imageElement);
   } else if (type === "video") {
@@ -51,7 +51,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     videoElement.className = "medias-thumb";
     // videoElement.alt = alt;
     // eslint-disable-next-line no-undef
-    videoElement.tabIndex = getLatestTabindex() + 1;
+    videoElement.tabIndex = 0;
 
     const videoSourceElement = document.createElement("source");
     videoSourceElement.src = `/img/Sample Photos/${name}/${filename}`;
@@ -86,17 +86,17 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           const tagElement = document.createElement("li");
           /* eslint-disable no-undef */
           tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text" tabindex="${getLatestTabindex() + 1}">#${t}</a></span
+    ><a href="#!" class="tag-text" tabindex="0">#${t}</a></span
   >`;
           /* eslint-enable no-undef */
 
           tags.appendChild(tagElement);
         });
         // eslint-disable-next-line no-undef
-        image.tabIndex = getLatestTabindex() + 1;
+        image.tabIndex = 0;
 
         // eslint-disable-next-line no-undef
-        document.querySelector("#filter-selector").tabIndex = getLatestTabindex() + 1;
+        document.querySelector("#filter-selector").tabIndex = 0;
 
         // eslint-disable-next-line no-unused-vars
         const contactform = new ContactForm({ // eslint-disable-line no-undef

@@ -59,7 +59,7 @@ class Lightbox {
       lightboxImage.className = "lightbox-dialog-contentbox-image";
       lightboxImage.src = targetMedia.filename;
       lightboxImage.alt = targetMedia.alt;
-      lightboxImage.tabIndex = 1;
+      lightboxImage.tabIndex = 0;
 
       lightboxContentContainer.appendChild(lightboxImage);
     } else if (targetMedia.type === "video") {
@@ -67,7 +67,7 @@ class Lightbox {
       lightboxVideo.className = "lightbox-dialog-contentbox-video";
       lightboxVideo.controls = true;
       // lightboxVideo.alt = currentMedia.alt;
-      lightboxVideo.tabIndex = 1;
+      lightboxVideo.tabIndex = 0;
 
       const lightboxVideoSource = document.createElement("source");
       lightboxVideoSource.src = targetMedia.filename;
@@ -90,14 +90,14 @@ class Lightbox {
     const lightboxNext = document.createElement("a");
     lightboxNext.innerHTML = "<i class='far fa-angle-right'></i>";
     lightboxNext.className = "lightbox-dialog-next";
-    lightboxNext.tabIndex = 3;
+    lightboxNext.tabIndex = 0;
     this.medias[this.currentIndex + 1] !== undefined &&
       lightboxRightContainer.appendChild(lightboxNext);
 
     const lightboxClose = document.createElement("button");
     lightboxClose.innerHTML = "<i class='far fa-times'></i>";
     lightboxClose.className = "lightbox-dialog-close";
-    lightboxClose.tabIndex = 4;
+    lightboxClose.tabIndex = 0;
     lightboxRightContainer.appendChild(lightboxClose);
 
     lightboxPrevious.addEventListener("click", (e) => {

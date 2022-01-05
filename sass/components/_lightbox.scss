@@ -69,6 +69,10 @@
       font-weight: 700;
       font-size: 48px;
       cursor: pointer;
+      
+      &:active:focus {
+        outline: solid;
+      }
     }
 
     &-close {

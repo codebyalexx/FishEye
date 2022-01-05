@@ -28,10 +28,10 @@
     <main class="content">
       <article class="photographer-header">
         <div>
-          <h1 class="photographer-header-title" id="auto-name" tabindex="1">...</h1>
-          <button class="button" id="contact-button" tabindex="2">Contactez-moi</button>
+          <h1 class="photographer-header-title" id="auto-name" tabindex="0">...</h1>
+          <button class="button" id="contact-button" tabindex="0">Contactez-moi</button>
         </div>
-        <p class="photographer-header-caption" id="auto-caption" tabindex="3">
+        <p class="photographer-header-caption" id="auto-caption" tabindex="0">
           ..., ... <span>...</span>
         </p>
         <ul class="photographer-header-tags" id="auto-tags"></ul>
@@ -40,12 +40,13 @@
           alt=""
           class="photographer-header-image user user--xl"
           id="auto-image"
+          tabindex="0"
         />
       </article>
       <article class="photographer-medias">
         <div class="filter">
           <label for="filter-selector">Filtrer par</label>
-          <select name="filter-selector" id="filter-selector" class="dropdown">
+          <select name="filter-selector" id="filter-selector" class="dropdown" tabindex="0">
             <option value="Popularité" selected>Popularité</option>
             <option value="Date">Date</option>
             <option value="Titre">Titre</option>

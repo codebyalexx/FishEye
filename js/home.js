@@ -20,12 +20,10 @@ function photographerElementTemplate ({
 
   for (let index = 0; index < tags.length; index++) {
     const tag = tags[index];
-    // eslint-disable-next-line no-undef
-    const tabindex = getLatestTabindex() + 6 + index;
 
     const tagElement = document.createElement("li");
     tagElement.innerHTML = `<span class="tag"
-    ><a href="#!" class="tag-text" tabindex="${tabindex}">#${tag}</a></span
+    ><a href="#!" class="tag-text" tabindex="0">#${tag}</a></span
   >`;
 
     tagsElement.appendChild(tagElement);
@@ -34,20 +32,20 @@ function photographerElementTemplate ({
   /* eslint-disable no-undef */
 
   element.innerHTML = `<article class="thumb-photographer">
-  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="${getLatestTabindex() + 1}">
+  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="0">
     <img
       src="./img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"
       alt="${alt}"
     />
-    <h2 tabindex="${getLatestTabindex() + 2}">${name}</h2>
+    <h2 tabindex="0">${name}</h2>
   </a>
   <div class="thumb-photographer-about">
-    <p class="thumb-photographer-about-city" tabindex="${getLatestTabindex() + 3}">${city}, ${country}</p>
-    <p class="thumb-photographer-about-caption" tabindex="${getLatestTabindex() + 4}">
+    <p class="thumb-photographer-about-city" tabindex="0">${city}, ${country}</p>
+    <p class="thumb-photographer-about-caption" tabindex="0">
       ${tagline}
     </p>
-    <span tabindex="${getLatestTabindex() + 5}">${price}€/jour</span>
+    <span tabindex="0">${price}€/jour</span>
   </div>
 </article>`;
 

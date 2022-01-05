@@ -50,16 +50,16 @@ function applyFilter (filter) {
     });
   } else if (filter === "title") {
     filterItemsArr.sort(function (a, b) {
-      const aTitle = a.title;
-      const bTitle = b.title;
+      const aTitle = a.getAttribute("filter-title");
+      const bTitle = b.getAttribute("filter-title");
       return aTitle === bTitle
         ? 0
         : (aTitle > bTitle ? 1 : -1);
     });
 
     lightboxMedias.sort(function (a, b) {
-      const aTitle = a.getAttribute("filter-title");
-      const bTitle = b.getAttribute("filter-title");
+      const aTitle = a.title;
+      const bTitle = b.title;
       return aTitle === bTitle
         ? 0
         : (aTitle > bTitle ? 1 : -1);

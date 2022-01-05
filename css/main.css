@@ -147,6 +147,9 @@ main {
   font-size: 48px;
   cursor: pointer;
 }
+.lightbox-dialog-previous:active:focus, .lightbox-dialog-next:active:focus, .lightbox-dialog-close:active:focus {
+  outline: solid;
+}
 .lightbox-dialog-close {
   position: absolute;
   top: 45px;
