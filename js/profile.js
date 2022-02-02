@@ -36,7 +36,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
 
   if (type === "image") {
     const imageElement = document.createElement("img");
-    imageElement.src = `/img/Sample Photos/${name}/${filename}`;
+    imageElement.src = `img/Sample Photos/${name}/${filename}`;
     imageElement.alt = alt;
     imageElement.className = "medias-thumb";
     imageElement.setAttribute("open-lightbox", true);
@@ -46,7 +46,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     element.querySelector(".medias-container").prepend(imageElement);
   } else if (type === "video") {
     const videoElement = document.createElement("video");
-    videoElement.src = `/img/Sample Photos/${name}/${filename}`;
+    videoElement.src = `img/Sample Photos/${name}/${filename}`;
     videoElement.setAttribute("open-lightbox", true);
     videoElement.className = "medias-thumb";
     // videoElement.alt = alt;
@@ -54,7 +54,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     videoElement.tabIndex = 0;
 
     const videoSourceElement = document.createElement("source");
-    videoSourceElement.src = `/img/Sample Photos/${name}/${filename}`;
+    videoSourceElement.src = `img/Sample Photos/${name}/${filename}`;
     videoSourceElement.type = "video/mp4";
     videoElement.appendChild(videoSourceElement);
 
@@ -80,7 +80,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
 
         pName.innerText = targetProfile.name;
         caption.innerHTML = `${targetProfile.city}, ${targetProfile.country} <span>${targetProfile.tagline}</span>`;
-        image.src = `/img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
+        image.src = `img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
         image.alt = targetProfile.alt;
         targetProfile.tags.forEach((t) => {
           const tagElement = document.createElement("li");
@@ -121,7 +121,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
 
           const lightboxMediaParameters = {
             filename: (
-              `/img/Sample Photos/${targetProfile.name}/${
+              `img/Sample Photos/${targetProfile.name}/${
                 media.image || media.video
               }`
             ),

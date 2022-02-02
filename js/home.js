@@ -32,9 +32,9 @@ function photographerElementTemplate ({
   /* eslint-disable no-undef */
 
   element.innerHTML = `<article class="thumb-photographer">
-  <a href="./profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="0" aria-label="Accéder au profil de ${name}">
+  <a href="profile.html?photographerid=${id}" class="thumb-photographer-brand" tabindex="0" aria-label="Accéder au profil de ${name}">
     <img
-      src="./img/Sample Photos/Photographers ID Photos/${portrait}"
+      src="img/Sample Photos/Photographers ID Photos/${portrait}"
       class="user user--xl"
       alt="${alt}"
     />
