@@ -255,6 +255,7 @@ main {
 .lightbox-dialog-contentbox-image, .lightbox-dialog-contentbox-video {
   width: 100%;
   object-fit: scale-down;
+  max-height: 100%;
 }
 @media screen and (max-width: 760px) {
   .lightbox-dialog-contentbox-image, .lightbox-dialog-contentbox-video {

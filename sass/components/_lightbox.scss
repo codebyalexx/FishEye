@@ -50,6 +50,7 @@
       &-video {
         width: 100%;
         object-fit: scale-down;
+        max-height: 100%;
         
         @include tablet-only{
           height: 100%;

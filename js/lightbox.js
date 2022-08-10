@@ -6,6 +6,7 @@ class Lightbox {
     this.listeners = {};
 
     this.updateHandlers();
+    this.createKeyboardEvents();
   }
 
   setMedias (newMedias) {
@@ -31,6 +32,16 @@ class Lightbox {
     });
   }
 
+  createKeyboardEvents () {
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowRight") {
+        this.next();
+      } else if (e.key === "ArrowLeft") {
+        this.previous();
+      }
+    });
+  }
+
   getElement (targetMedia) {
     const lightboxModal = document.createElement("div");
     lightboxModal.className = "lightbox-modal";
@@ -48,8 +59,7 @@ class Lightbox {
     lightboxPrevious.className = "lightbox-dialog-previous";
     lightboxPrevious.tabIndex = 0;
     lightboxPrevious.ariaLabel = "Image précédente";
-    this.medias[this.currentIndex - 1] !== undefined &&
-      lightboxLeftContainer.appendChild(lightboxPrevious);
+    lightboxLeftContainer.appendChild(lightboxPrevious);
 
     const lightboxContentContainer = document.createElement("div");
     lightboxContentContainer.className = "lightbox-dialog-contentbox";
@@ -93,8 +103,7 @@ class Lightbox {
     lightboxNext.className = "lightbox-dialog-next";
     lightboxNext.tabIndex = 0;
     lightboxNext.ariaLabel = "Image suivante";
-    this.medias[this.currentIndex + 1] !== undefined &&
-      lightboxRightContainer.appendChild(lightboxNext);
+    lightboxRightContainer.appendChild(lightboxNext);
 
     const lightboxClose = document.createElement("button");
     lightboxClose.innerHTML = "<i class='far fa-times'></i>";
@@ -162,10 +171,12 @@ class Lightbox {
   }
 
   next () {
-    this.open(this.currentIndex + 1);
+    const newIndex = this.currentIndex + 1;
+    this.open(this.medias[newIndex] ? newIndex : 0);
   }
 
   previous () {
-    this.open(this.currentIndex - 1);
+    const newIndex = this.currentIndex - 1;
+    this.open(this.medias[newIndex] ? newIndex : this.medias.length - 1);
   }
 }
