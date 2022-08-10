@@ -1,7 +1,15 @@
-// eslint-disable-next-line no-unused-vars
-function request (url, method = "GET") {
+/**
+ * Perform a HTTP(s) web request
+ * @typedef {'GET'|'POST'|'PUT'|'DELETE'|'PATCH'} REQ_METHODS
+ * @param {URL} url - The URL of the request
+ * @param { REQ_METHODS } method - The method of the request
+ * @returns {Promise} - The promise contains response text
+ */
+function request (url, method = "GET") { // eslint-disable-line no-unused-vars
   return new Promise((resolve, reject) => {
     const req = new XMLHttpRequest();
+
+    // Request events
 
     req.onreadystatechange = () => {
       if (req.readyState === 4) {
@@ -29,13 +37,17 @@ function request (url, method = "GET") {
   });
 }
 
-// eslint-disable-next-line no-unused-vars
-function getLatestTabindex () {
+/**
+ * Get the highest tab index attribute through the DOM
+ * @returns {number} - the highest tab index attribute trough the DOM
+ */
+function getLatestTabindex () { // eslint-disable-line no-unused-vars
   let picked = -1;
 
   document.querySelectorAll("body *").forEach((domElement) => {
     const tabIndex = domElement.tabIndex;
 
+    // Select this tab index if he's higher than the current
     picked = picked < tabIndex ? tabIndex : picked;
   });
 

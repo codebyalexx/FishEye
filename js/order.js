@@ -1,7 +1,12 @@
+// Filter elements from DOM
 const filterSelect = document.querySelector("#filter-selector");
 const filterList = document.querySelector("#auto-medias");
 const filterItems = filterList.childNodes;
 
+/**
+ * Filter the medias by data type (example: likes)
+ * @param {string} filter - The type of filter to apply
+ */
 function applyFilter (filter) {
   const filterItemsArr = [];
 
@@ -16,7 +21,9 @@ function applyFilter (filter) {
     }
   }
 
+  // Sort medias by likes
   if (filter === "likes") {
+    // filter dom elements
     filterItemsArr.sort(function (a, b) {
       const aLikes = Number.parseInt(a.getAttribute("filter-likes"));
       const bLikes = Number.parseInt(b.getAttribute("filter-likes"));
@@ -25,6 +32,7 @@ function applyFilter (filter) {
         : (aLikes < bLikes ? 1 : -1);
     });
 
+    // filter lightbox elements
     lightboxMedias.sort(function (a, b) {
       const aLikes = a.likes;
       const bLikes = b.likes;
@@ -32,7 +40,8 @@ function applyFilter (filter) {
         ? 0
         : (aLikes < bLikes ? 1 : -1);
     });
-  } else if (filter === "date") {
+  } else if (filter === "date") { // Sort by date (old -> new)
+    // filter dom elements
     filterItemsArr.sort(function (a, b) {
       const aDate = Date.parse(a.getAttribute("filter-date"));
       const bDate = Date.parse(b.getAttribute("filter-date"));
@@ -41,6 +50,7 @@ function applyFilter (filter) {
         : (aDate < bDate ? 1 : -1);
     });
 
+    // filter lightbox elements
     lightboxMedias.sort(function (a, b) {
       const aDate = Date.parse(a.date);
       const bDate = Date.parse(b.date);
@@ -48,7 +58,8 @@ function applyFilter (filter) {
         ? 0
         : (aDate < bDate ? 1 : -1);
     });
-  } else if (filter === "title") {
+  } else if (filter === "title") { // Sort by title (a -> z)
+    // filter dom elements
     filterItemsArr.sort(function (a, b) {
       const aTitle = a.getAttribute("filter-title");
       const bTitle = b.getAttribute("filter-title");
@@ -57,6 +68,7 @@ function applyFilter (filter) {
         : (aTitle > bTitle ? 1 : -1);
     });
 
+    // filter lightbox elements
     lightboxMedias.sort(function (a, b) {
       const aTitle = a.title;
       const bTitle = b.title;
@@ -65,6 +77,8 @@ function applyFilter (filter) {
         : (aTitle > bTitle ? 1 : -1);
     });
   }
+
+  // apply dom
 
   filterList.innerHTML = "";
 
@@ -78,6 +92,7 @@ function applyFilter (filter) {
   lightbox.updateHandlers();
 }
 
+// Create listeners for filter input
 (function () {
   filterSelect.addEventListener("change", (e) => {
     switch (e.target.value) {

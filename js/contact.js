@@ -1,13 +1,24 @@
-// eslint-disable-next-line no-unused-vars
-class ContactForm {
+/** Contact form modal class */
+class ContactForm { // eslint-disable-line no-unused-vars
+  /**
+   *
+   * @param {Object} FormInfos - contact form infos object
+   * @param {string} FormInfos.name - contact form's name
+   * @param {Element} FormInfos.handler - the Element who opens the contact form
+   */
   constructor ({ name, handler }) {
     this.name = name;
 
+    // add click listener to form handler
     handler.addEventListener("click", (e) => {
       this.open();
     });
   }
 
+  /**
+   * Get the DOM element of the Contact Form
+   * @returns {Element} - Returns the contact form
+   */
   getElement () {
     const modal = document.createElement("div");
     modal.className = "contactform-wrapper";
@@ -88,11 +99,15 @@ class ContactForm {
     return modal;
   }
 
+  /**
+   * Open the contact form popup
+   */
   open () {
     this.close();
 
     this.form = this.getElement();
 
+    // Make all body elements unfocusable and save their tab index (temporary)
     document.querySelectorAll("body *").forEach((domElement) => {
       if (domElement.tabIndex !== -1) {
         const tabIndex = domElement.tabIndex;
@@ -108,9 +123,13 @@ class ContactForm {
     document.body.style.position = "fixed";
   }
 
+  /**
+   * Close the contact form popup
+   */
   close () {
     this.form && this.form.remove();
 
+    // Make all body elements tab index back (and make them focusable back)
     document.querySelectorAll("body *").forEach((domElement) => {
       if (domElement.hasAttribute("stored-tabindex")) {
         domElement.tabIndex = domElement.getAttribute("stored-tabindex");

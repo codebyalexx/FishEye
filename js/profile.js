@@ -1,3 +1,4 @@
+// dom variables - to edit with photographer infos
 const pName = document.querySelector("#auto-name");
 const caption = document.querySelector("#auto-caption");
 const tags = document.querySelector("#auto-tags");
@@ -8,7 +9,12 @@ const contactButton = document.querySelector("#contact-button");
 // eslint-disable-next-line no-undef
 const lightbox = new Lightbox({ });
 
+/**
+ * Get photographer id from URL
+ * @returns {string} - returns photographer's id
+ */
 function getPagePhotographerId () {
+  // remove URL and keep only params
   let paramsString = window.location.href.split("?");
   paramsString.shift();
   paramsString = paramsString.join("?");
@@ -18,6 +24,18 @@ function getPagePhotographerId () {
   return searchParams.get("photographerid").toString();
 }
 
+/**
+ * Convert media data into dom element
+ * @param {Object} MediaData - Media's data
+ * @param {string} MediaData.title - Media's title
+ * @param {number} MediaData.likes - Media's like count
+ * @param {string} MediaData.name - Media's photographer's name
+ * @param {string} MediaData.filename - Media's filename
+ * @param {string} MediaData.type - Media's type (image or video)
+ * @param {string} MediaData.alt - Media's image/video description
+ * @param {string} MediaData.date - Media's creation date
+ * @returns {Element}
+ */
 function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }) {
   const element = document.createElement("li");
   element.className = "medias-item";
@@ -34,6 +52,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
 </article>`;
   /* eslint-enable no-undef */
 
+  // Create media's thumbnail
   if (type === "image") {
     const imageElement = document.createElement("img");
     imageElement.src = `img/Sample Photos/${name}/${filename}`;
@@ -49,7 +68,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
     videoElement.src = `img/Sample Photos/${name}/${filename}`;
     videoElement.setAttribute("open-lightbox", true);
     videoElement.className = "medias-thumb";
-    // videoElement.alt = alt;
+    videoElement.ariaLabel = alt;
     // eslint-disable-next-line no-undef
     videoElement.tabIndex = 0;
 
@@ -71,13 +90,16 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
       try {
         data = JSON.parse(data);
 
+        // Get current photographer from URL
         const targetProfile = data.photographers.find(
           (p) => p.id.toString() === getPagePhotographerId()
         );
+        // Get the medias of the target photographer
         const targetMedias = data.media.filter(function (el) {
           return el.photographerId.toString() === getPagePhotographerId();
         });
 
+        // Edit photographer infos in the DOM
         pName.innerText = targetProfile.name;
         caption.innerHTML = `${targetProfile.city}, ${targetProfile.country} <span>${targetProfile.tagline}</span>`;
         image.src = `img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
@@ -106,7 +128,9 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
 
         const lightboxMedias = [];
 
+        // Generating medias
         targetMedias.forEach((media) => {
+          // Adding medias to medias list
           medias.appendChild(
             mediaElementTemplate({
               filename: media.image || media.video,
@@ -119,6 +143,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
             })
           );
 
+          // Add media to the lightbox
           const lightboxMediaParameters = {
             filename: (
               `img/Sample Photos/${targetProfile.name}/${
@@ -135,6 +160,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           lightboxMedias.push(lightboxMediaParameters);
         });
 
+        // update lightbox
         lightbox.setMedias(lightboxMedias);
         lightbox.updateHandlers();
         // eslint-disable-next-line no-undef

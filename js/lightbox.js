@@ -1,5 +1,9 @@
-// eslint-disable-next-line no-unused-vars
-class Lightbox {
+/** Lightbox modal class */
+class Lightbox { // eslint-disable-line no-unused-vars
+  /**
+   * @param {Object} LightBoxData - Lightbox's data object
+   * @param {Object[]} LightBoxData.medias - Lightbox's medias object
+   */
   constructor ({ medias = [] }) {
     this.currentIndex = 0;
     this.medias = medias;
@@ -9,14 +13,26 @@ class Lightbox {
     this.createKeyboardEvents();
   }
 
+  /**
+   * Define lightbox medias object
+   * @param {Object[]} newMedias - New lightbox's medias object
+   */
   setMedias (newMedias) {
     this.medias = newMedias;
   }
 
+  /**
+   * Get the lightbox's medias object
+   * @returns {Object[]} - Return lightbox's medias object
+   */
   getMedias () {
     return this.medias;
   }
 
+  /**
+   * Refresh lightbox medias handlers (cause sometimes, lightbox items are replaced)
+   * Listeners are created by their medias filename to avoid duplicates
+   */
   updateHandlers () {
     document.querySelectorAll("[open-lightbox]").forEach((lightboxHandler) => {
       const parsedSrc = lightboxHandler.src.replaceAll("%20", " ");
@@ -32,6 +48,9 @@ class Lightbox {
     });
   }
 
+  /**
+   * Create arrows keys event to navigate through keyboard
+   */
   createKeyboardEvents () {
     window.addEventListener("keydown", (e) => {
       if (e.key === "ArrowRight") {
@@ -42,6 +61,11 @@ class Lightbox {
     });
   }
 
+  /**
+   * Get lightbox current page element
+   * @param {Object} targetMedia - the media to display
+   * @returns {Element} - returns the lightbox page DOM element
+   */
   getElement (targetMedia) {
     const lightboxModal = document.createElement("div");
     lightboxModal.className = "lightbox-modal";
@@ -77,7 +101,7 @@ class Lightbox {
       const lightboxVideo = document.createElement("video");
       lightboxVideo.className = "lightbox-dialog-contentbox-video";
       lightboxVideo.controls = true;
-      // lightboxVideo.alt = currentMedia.alt;
+      lightboxVideo.ariaLabel = targetMedia.alt;
       lightboxVideo.tabIndex = 0;
 
       const lightboxVideoSource = document.createElement("source");
@@ -112,6 +136,8 @@ class Lightbox {
     lightboxClose.ariaLabel = "Fermer la fenêtre";
     lightboxRightContainer.appendChild(lightboxClose);
 
+    // Create lightbox listeners
+
     lightboxPrevious.addEventListener("click", (e) => {
       this.previous();
     });
@@ -127,9 +153,15 @@ class Lightbox {
     return lightboxModal;
   }
 
+  /**
+   * Open (if not) the lightbox with the specified media index
+   * @param {number} targetIndex - Index of media to display
+   * @returns {}
+   */
   open (targetIndex = 0) {
     this.close();
 
+    // Temporary remove the tab index of the body elements
     document.querySelectorAll("body *").forEach((domElement) => {
       if (domElement.tabIndex !== -1) {
         const tabIndex = domElement.tabIndex;
@@ -156,9 +188,13 @@ class Lightbox {
     this.lightboxElement = lightboxModal;
   }
 
+  /**
+   * Close the lightbox modal
+   */
   close () {
     this.lightboxElement && this.lightboxElement.remove();
 
+    // Restore all tab index to the body elements
     document.querySelectorAll("body *").forEach((domElement) => {
       if (domElement.hasAttribute("stored-tabindex")) {
         domElement.tabIndex = domElement.getAttribute("stored-tabindex");
@@ -170,11 +206,17 @@ class Lightbox {
     document.body.style.position = "auto";
   }
 
+  /**
+   * Show next media, if on latest, go to the first
+   */
   next () {
     const newIndex = this.currentIndex + 1;
     this.open(this.medias[newIndex] ? newIndex : 0);
   }
 
+  /**
+   * Show previous media, if on the first, go to the last
+   */
   previous () {
     const newIndex = this.currentIndex - 1;
     this.open(this.medias[newIndex] ? newIndex : this.medias.length - 1);

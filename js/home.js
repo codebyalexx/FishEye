@@ -1,5 +1,20 @@
+// element that will hold photographers elements
 const photographerList = document.querySelector("#photographer-list");
 
+/**
+ * Convert the photographer data into Dom element
+ * @param {Object} PhotographerData - Photographer's Data
+ * @param {string} PhotographerData.name - Photographer's name
+ * @param {number} PhotographerData.id - Photographer's id
+ * @param {string} PhotographerData.city - Photographer's city
+ * @param {string} PhotographerData.country - Photographer's country
+ * @param {string[]} PhotographerData.tags - Photographer's tags
+ * @param {string} PhotographerData.tagline - Photographer's caption
+ * @param {number} PhotographerData.price - Photographer's daily price
+ * @param {string} PhotographerData.portrait - Photographer's portrait filename
+ * @param {string} PhotographerData.alt - Photographer's portrait img's description
+ * @returns {Element} - Photographer list item
+ */
 function photographerElementTemplate ({
   name,
   id,
@@ -18,6 +33,7 @@ function photographerElementTemplate ({
   const tagsElement = document.createElement("ul");
   tagsElement.className = "thumb-photographer-tags";
 
+  // Create tags elements
   for (let index = 0; index < tags.length; index++) {
     const tag = tags[index];
 
@@ -56,14 +72,17 @@ function photographerElementTemplate ({
   return element;
 }
 
+// Catch photographers data from mocked local file (TODO: replace local path with API endpoint)
 (function () {
   // eslint-disable-next-line no-undef
   request("/data/FishEyeData.json")
+    // treat promise data
     .then((data) => {
       try {
         data = JSON.parse(data);
         const photographers = data.photographers;
 
+        // Instanciate photographers list items
         photographers.forEach((photographer) => {
           photographerList.appendChild(
             photographerElementTemplate({
@@ -86,6 +105,7 @@ function photographerElementTemplate ({
         );
       }
     })
+    // Error catching
     .catch((err) => {
       console.log(err);
       alert(
