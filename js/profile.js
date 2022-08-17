@@ -5,15 +5,17 @@ const tags = document.querySelector("#auto-tags");
 const image = document.querySelector("#auto-image");
 const medias = document.querySelector("#auto-medias");
 const contactButton = document.querySelector("#contact-button");
+const totalLikes = document.querySelector("#photographer-stats-like")
+const priceSummary = document.querySelector("#photographer-stats-price")
 
 // eslint-disable-next-line no-undef
-const lightbox = new Lightbox({ });
+const lightbox = new Lightbox({});
 
 /**
  * Get photographer id from URL
  * @returns {string} - returns photographer's id
  */
-function getPagePhotographerId () {
+function getPagePhotographerId() {
   // remove URL and keep only params
   let paramsString = window.location.href.split("?");
   paramsString.shift();
@@ -36,7 +38,7 @@ function getPagePhotographerId () {
  * @param {string} MediaData.date - Media's creation date
  * @returns {Element}
  */
-function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }) {
+function mediaElementTemplate({ title, likes, name, filename, type, alt, date }) {
   const element = document.createElement("li");
   element.className = "medias-item";
   element.setAttribute("filter-title", title);
@@ -99,8 +101,14 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           return el.photographerId.toString() === getPagePhotographerId();
         });
 
+        // Count total likes
+        let totalLikesCount = 0
+        targetMedias.map((el) => totalLikesCount += el.likes)
+
         // Edit photographer infos in the DOM
         pName.innerText = targetProfile.name;
+        priceSummary.innerText = targetProfile.price
+        totalLikes.innerText = totalLikesCount
         caption.innerHTML = `${targetProfile.city}, ${targetProfile.country} <span>${targetProfile.tagline}</span>`;
         image.src = `img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
         image.alt = targetProfile.alt;
@@ -146,8 +154,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           // Add media to the lightbox
           const lightboxMediaParameters = {
             filename: (
-              `img/Sample Photos/${targetProfile.name}/${
-                media.image || media.video
+              `img/Sample Photos/${targetProfile.name}/${media.image || media.video
               }`
             ),
             type: media.image ? "image" : "video",

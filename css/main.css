@@ -8,6 +8,7 @@ body {
   overflow-x: hidden;
   width: 100%;
   height: 100%;
+  padding-bottom: 120px;
 }
 
 html, body {
@@ -576,6 +577,33 @@ main {
 }
 .photographer-medias .medias-infos-likes {
   color: #901c1c;
+}
+
+.photographer-stats {
+  display: flex;
+  padding: 20px 30px;
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  width: auto;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #DB8876;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+}
+.photographer-stats-likes {
+  margin-right: 20px;
+}
+.photographer-stats-price {
+  margin-left: 20px;
+}
+@media screen and (max-width: 760px) {
+  .photographer-stats {
+    display: none;
+  }
 }
 
 .tag {

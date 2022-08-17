@@ -280,3 +280,31 @@
     }
   }
 }
+
+.photographer-stats {
+  display: flex;
+  padding: 20px 30px;
+  position: fixed;
+  bottom: 0;
+  right: 30px;
+  width: auto;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background-color: #DB8876;
+  color: #000;
+  font-size: 24px;
+  font-weight: 500;
+
+  &-likes {
+    margin-right: 20px;
+  }
+
+  &-price {
+    margin-left: 20px;
+  }
+
+  @include tablet-only {
+    display: none;
+  }
+}

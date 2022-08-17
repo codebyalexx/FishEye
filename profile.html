@@ -28,7 +28,7 @@
   </head>
   <body>
     <header class="header">
-      <a class="logo" href="index.html" tabindex="0">
+      <a class="logo" href="index.html" tabindex="0" aria-label="Page d'accueil">
         <img
           src="img/Icons/logo.png"
           alt="Icône de FishEye"
@@ -69,6 +69,11 @@
         </div>
       </article>
     </main>
+
+    <div class="photographer-stats">
+      <div class="photographer-stats-likes"><span id="photographer-stats-like">0</span> <i class="fas fa-heart"></i></div>
+      <div class="photographer-stats-price"><span id="photographer-stats-price">0</span>€ / jour</div>
+    </div>
 
     <script src="js/app.js"></script>
     <script src="js/lightbox.js"></script>
