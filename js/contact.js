@@ -30,6 +30,12 @@ class ContactForm { // eslint-disable-line no-unused-vars
       }
     });
 
+    // Add tabindex to form elements
+    this.wrapper.querySelectorAll("[data-open-tabindex]").forEach((el) => {
+      const tabindex = el.dataset.openTabindex;
+      el.setAttribute("tabindex", tabindex);
+    });
+
     document.body.style.position = "fixed";
   }
 
@@ -46,6 +52,11 @@ class ContactForm { // eslint-disable-line no-unused-vars
 
         domElement.removeAttribute("stored-tabindex");
       }
+    });
+
+    // Remove tabindex from form elements
+    this.wrapper.querySelectorAll("[data-open-tabindex]").forEach((el) => {
+      el.removeAttribute("tabindex");
     });
 
     document.body.style.position = "auto";
