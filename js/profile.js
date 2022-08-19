@@ -28,6 +28,22 @@ function getPagePhotographerId () {
 }
 
 /**
+ * Get media likes section template
+ * @param {Object} MediaData - Media's likes data
+ * @param {number} MediaData.likes - Media's like count
+ * @param {Number} MediaData.index - Media's index
+ * @param {Boolean} MediaData.liked - Is the media liked by user
+ * @returns {Element}
+ */
+function mediaLikesSectionTemplate ({
+  index,
+  likes,
+  liked = false
+}) {
+  return `<span class="medias-infos-likes" tabindex="0" aria-label="${likes} mentions j'aime" id="action-like-${index}" data-likes="${likes}" data-liked="${liked}"><span>${likes}</span> <i class="fas fa-heart"></i></span>`;
+}
+
+/**
  * Convert media data into dom element
  * @param {Object} MediaData - Media's data
  * @param {string} MediaData.title - Media's title
@@ -37,9 +53,10 @@ function getPagePhotographerId () {
  * @param {string} MediaData.type - Media's type (image or video)
  * @param {string} MediaData.alt - Media's image/video description
  * @param {string} MediaData.date - Media's creation date
+ * @param {Number} MediaData.index - Media's index
  * @returns {Element}
  */
-function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }) {
+function mediaElementTemplate ({ title, likes, name, filename, type, alt, date, index }) {
   const element = document.createElement("li");
   element.className = "medias-item";
   element.setAttribute("filter-title", title);
@@ -50,7 +67,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
   element.innerHTML = `<article class="medias-container">
   <div class="medias-infos">
     <p class="medias-infos-title" tabindex="0" lang="en">${title}</p>
-    <span class="medias-infos-likes" tabindex="0" aria-label="${likes} mentions j'aime">${likes} <i class="fas fa-heart"></i></span>
+    ${mediaLikesSectionTemplate({ index, likes })}
   </div>
 </article>`;
   /* eslint-enable no-undef */
@@ -142,7 +159,9 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
         const lightboxMedias = [];
 
         // Generating medias
-        targetMedias.forEach((media) => {
+        for (let index = 0; index < targetMedias.length; index++) {
+          const media = targetMedias[index];
+
           // Adding medias to medias list
           medias.appendChild(
             mediaElementTemplate({
@@ -152,7 +171,8 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
               name: targetProfile.name,
               title: media.title,
               alt: media.alt,
-              date: media.date
+              date: media.date,
+              index
             })
           );
 
@@ -170,7 +190,26 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }
           };
 
           lightboxMedias.push(lightboxMediaParameters);
-        });
+
+          // Create like system listeners/handlers
+          const likeSection = document.querySelector(`#action-like-${index}`);
+          likeSection.addEventListener("click", function (e) {
+            const liked = likeSection.dataset.liked === "true";
+            const likes = Number.parseInt(likeSection.dataset.likes);
+            const newLiked = !liked;
+            const newLikes = likes + (newLiked ? 1 : -1);
+
+            // Update element
+            likeSection.setAttribute("data-liked", newLiked);
+            likeSection.setAttribute("data-likes", newLikes);
+            likeSection.setAttribute("aria-label", `${newLikes} mentions j'aime`);
+            likeSection.querySelector("span").innerText = newLikes;
+
+            // Update total likes
+            totalLikesCount = totalLikesCount + (newLiked ? 1 : -1);
+            totalLikes.innerText = totalLikesCount;
+          });
+        }
 
         // update lightbox
         lightbox.setMedias(lightboxMedias);

@@ -577,6 +577,7 @@ main {
 }
 .photographer-medias .medias-infos-likes {
   color: #901c1c;
+  cursor: pointer;
 }
 
 .photographer-stats {
