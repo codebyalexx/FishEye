@@ -295,7 +295,7 @@ main {
   font-size: 48px;
   cursor: pointer;
 }
-.lightbox-dialog-previous:active:focus, .lightbox-dialog-next:active:focus, .lightbox-dialog-close:active:focus {
+.lightbox-dialog-previous:active, .lightbox-dialog-previous:focus, .lightbox-dialog-next:active, .lightbox-dialog-next:focus, .lightbox-dialog-close:active, .lightbox-dialog-close:focus {
   outline: solid;
 }
 @media screen and (max-width: 760px) {

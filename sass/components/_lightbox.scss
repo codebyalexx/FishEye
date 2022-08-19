@@ -93,7 +93,8 @@
       font-size: 48px;
       cursor: pointer;
       
-      &:active:focus {
+      &:active,
+      &:focus {
         outline: solid;
       }
 

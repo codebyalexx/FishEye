@@ -53,3 +53,10 @@ function getLatestTabindex () { // eslint-disable-line no-unused-vars
 
   return picked;
 }
+
+// Make all elements clickable with keyboard
+window.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    document.activeElement.click();
+  }
+});
