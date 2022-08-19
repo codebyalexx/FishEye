@@ -1,84 +1,100 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Profil - FishEye</title>
-    <link rel="shortcut icon" href="img/Icons/icon.png" type="image/png" />
-    <link rel="stylesheet" href="css/main.css" />
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
-      crossorigin="anonymous"
-    />
-    <meta name="title" content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
-    <meta name="description" content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://github.com/alexandrelg2022/FishEye">
-    <meta property="og:title" content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
-    <meta property="og:description" content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
-    <meta property="og:image" content="https://opengraph.githubassets.com/1a564a33ce9050d14d885b878ea24dba60603937690c1371bf07a6c44c6a360d/alexandrelg2022/FishEye">
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://github.com/alexandrelg2022/FishEye">
-    <meta property="twitter:title" content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
-    <meta property="twitter:description" content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
-    <meta property="twitter:image" content="https://opengraph.githubassets.com/1a564a33ce9050d14d885b878ea24dba60603937690c1371bf07a6c44c6a360d/alexandrelg2022/FishEye">
-  </head>
-  <body>
-    <header class="header">
-      <a class="logo" href="index.html" tabindex="0" aria-label="Page d'accueil">
-        <img
-          src="img/Icons/logo.png"
-          alt="Icône de FishEye"
-          class="logo-image"
-        />
-      </a>
-    </header>
 
-    <main class="content">
-      <article class="photographer-header">
-        <div>
-          <h1 class="photographer-header-title" id="auto-name" tabindex="0">...</h1>
-          <button class="button" id="contact-button" tabindex="0">Contactez-moi</button>
-        </div>
-        <p class="photographer-header-caption" id="auto-caption" tabindex="0">
-          ..., ... <span>...</span>
-        </p>
-        <ul class="photographer-header-tags" id="auto-tags"></ul>
-        <img
-          src=""
-          alt=""
-          class="photographer-header-image user user--xl"
-          id="auto-image"
-          tabindex="0"
-        />
-      </article>
-      <article class="photographer-medias">
-        <div class="filter">
-          <label for="filter-selector">Filtrer par</label>
-          <select name="filter-selector" id="filter-selector" class="dropdown" tabindex="0">
-            <option value="Popularité" selected>Popularité</option>
-            <option value="Date">Date</option>
-            <option value="Titre">Titre</option>
-          </select>
-        </div>
-        <div class="medias">
-          <ul class="medias-list" id="auto-medias"></ul>
-        </div>
-      </article>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profil - FishEye</title>
+  <link rel="shortcut icon" href="img/Icons/icon.png" type="image/png" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+  <meta name="title" content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
+  <meta name="description"
+    content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://github.com/alexandrelg2022/FishEye">
+  <meta property="og:title"
+    content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
+  <meta property="og:description"
+    content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
+  <meta property="og:image"
+    content="https://opengraph.githubassets.com/1a564a33ce9050d14d885b878ea24dba60603937690c1371bf07a6c44c6a360d/alexandrelg2022/FishEye">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://github.com/alexandrelg2022/FishEye">
+  <meta property="twitter:title"
+    content="GitHub - alexandrelg2022/FishEye: P6 of Front-End Developer Course (OpenClassrooms)">
+  <meta property="twitter:description"
+    content="FishEye est un site web qui permet aux photographes indépendants de présenter leurs meilleurs travaux.">
+  <meta property="twitter:image"
+    content="https://opengraph.githubassets.com/1a564a33ce9050d14d885b878ea24dba60603937690c1371bf07a6c44c6a360d/alexandrelg2022/FishEye">
+</head>
 
-    <div class="photographer-stats">
-      <div class="photographer-stats-likes"><span id="photographer-stats-like">0</span> <i class="fas fa-heart"></i></div>
-      <div class="photographer-stats-price"><span id="photographer-stats-price">0</span>€ / jour</div>
-    </div>
+<body>
+  <header class="header">
+    <a class="logo" href="index.html" tabindex="0" aria-label="Page d'accueil">
+      <img src="img/Icons/logo.png" alt="Icône de FishEye" class="logo-image" />
+    </a>
+  </header>
 
-    <script src="js/app.js"></script>
-    <script src="js/lightbox.js"></script>
-    <script src="js/contact.js"></script>
-    <script src="js/profile.js"></script>
-    <script src="js/order.js" defer></script>
-  </body>
+  <main class="content">
+    <article class="photographer-header">
+      <div>
+        <h1 class="photographer-header-title" id="auto-name" tabindex="0">...</h1>
+        <button class="button" id="contact-button" tabindex="0">Contactez-moi</button>
+      </div>
+      <p class="photographer-header-caption" id="auto-caption" tabindex="0">
+        ..., ... <span>...</span>
+      </p>
+      <ul class="photographer-header-tags" id="auto-tags"></ul>
+      <img src="" alt="" class="photographer-header-image user user--xl" id="auto-image" tabindex="0" />
+    </article>
+    <article class="photographer-medias">
+      <div class="filter">
+        <label for="filter-selector">Filtrer par</label>
+        <select name="filter-selector" id="filter-selector" class="dropdown" tabindex="0">
+          <option value="Popularité" selected>Popularité</option>
+          <option value="Date">Date</option>
+          <option value="Titre">Titre</option>
+        </select>
+      </div>
+      <div class="medias">
+        <ul class="medias-list" id="auto-medias"></ul>
+      </div>
+    </article>
+  </main>
+
+  <div class="photographer-stats">
+    <div class="photographer-stats-likes"><span id="photographer-stats-like">0</span> <i class="fas fa-heart"></i></div>
+    <div class="photographer-stats-price"><span id="photographer-stats-price">0</span>€ / jour</div>
+  </div>
+
+  <div class="contactform-wrapper" id="contact-form">
+    <form class="contactform-modal">
+      <button class="contactform-modal-close" id="contact-form-close">
+        <i class="far fa-times"></i>
+      </button>
+      <h1 class="contactform-modal-title" tabindex="0">
+        Contactez-moi<br><span id="auto-name">...</span>
+      </h1>
+      <label class="contactform-modal-label" tabindex="0">Prénom</label>
+      <input class="form-field contactform-modal-field" aria-label="Prénom" type="text" name="firstname" required>
+      <label class="contactform-modal-label" tabindex="0">Nom</label>
+      <input class="form-field contactform-modal-field" aria-label="Nom" type="text" name="lastname" required>
+      <label class="contactform-modal-label" tabindex="0">Email</label>
+      <input class="form-field contactform-modal-field" aria-label="Email" type="email" name="email" required>
+      <label class="contactform-modal-label" tabindex="0">Message</label>
+      <textarea class="form-field contactform-modal-field" rows="4" aria-label="Message" type="text" name="message" required></textarea>
+      <button class="button contactform-modal-button" type="submit">Envoyer</button>
+    </form>
+  </div>
+
+  <script src="js/app.js"></script>
+  <script src="js/lightbox.js"></script>
+  <script src="js/contact.js"></script>
+  <script src="js/profile.js"></script>
+  <script src="js/order.js" defer></script>
+</body>
+
 </html>

@@ -3,109 +3,21 @@ class ContactForm { // eslint-disable-line no-unused-vars
   /**
    *
    * @param {Object} FormInfos - contact form infos object
-   * @param {string} FormInfos.name - contact form's name
    * @param {Element} FormInfos.handler - the Element who opens the contact form
+   * @param {Element} FormInfos.wrapper
    */
-  constructor ({ name, handler }) {
-    this.name = name;
+  constructor ({ handler, wrapper }) {
+    this.handler = handler;
+    this.wrapper = wrapper;
 
-    // add click listener to form handler
-    handler.addEventListener("click", (e) => {
-      this.open();
-    });
-  }
-
-  /**
-   * Get the DOM element of the Contact Form
-   * @returns {Element} - Returns the contact form
-   */
-  getElement () {
-    const modal = document.createElement("div");
-    modal.className = "contactform-wrapper";
-
-    const modalWrapper = document.createElement("form");
-    modalWrapper.className = "contactform-modal";
-    modal.appendChild(modalWrapper);
-
-    const modalClose = document.createElement("button");
-    modalClose.className = "contactform-modal-close";
-    modalClose.innerHTML = "<i class='far fa-times'></i>";
-    modalWrapper.appendChild(modalClose);
-
-    const modalTitle = document.createElement("h1");
-    modalTitle.innerHTML = `Contactez-moi<br />${this.name}`;
-    modalTitle.className = "contactform-modal-title";
-    modalTitle.tabIndex = 0;
-    modalWrapper.appendChild(modalTitle);
-
-    const modalFormFirstnameLabel = document.createElement("label");
-    modalFormFirstnameLabel.className = "contactform-modal-label";
-    modalFormFirstnameLabel.innerText = "Prénom";
-    modalFormFirstnameLabel.tabIndex = 0;
-    modalWrapper.appendChild(modalFormFirstnameLabel);
-
-    const modalFormFirstnameField = document.createElement("input");
-    modalFormFirstnameField.className = "form-field contactform-modal-field";
-    modalFormFirstnameField.ariaLabel = "Prénom";
-    modalWrapper.appendChild(modalFormFirstnameField);
-
-    const modalFormLastnameLabel = document.createElement("label");
-    modalFormLastnameLabel.className = "contactform-modal-label";
-    modalFormLastnameLabel.innerText = "Nom";
-    modalFormLastnameLabel.tabIndex = 0;
-    modalWrapper.appendChild(modalFormLastnameLabel);
-
-    const modalFormLastnameField = document.createElement("input");
-    modalFormLastnameField.className = "form-field contactform-modal-field";
-    modalFormLastnameField.ariaLabel = "Nom";
-    modalWrapper.appendChild(modalFormLastnameField);
-
-    const modalFormEmailLabel = document.createElement("label");
-    modalFormEmailLabel.className = "contactform-modal-label";
-    modalFormEmailLabel.innerText = "Email";
-    modalFormEmailLabel.tabIndex = 0;
-    modalWrapper.appendChild(modalFormEmailLabel);
-
-    const modalFormEmailField = document.createElement("input");
-    modalFormEmailField.className = "form-field contactform-modal-field";
-    modalFormEmailField.ariaLabel = "Email";
-    modalWrapper.appendChild(modalFormEmailField);
-
-    const modalFormMessageLabel = document.createElement("label");
-    modalFormMessageLabel.className = "contactform-modal-label";
-    modalFormMessageLabel.innerText = "Message";
-    modalFormMessageLabel.tabIndex = 0;
-    modalWrapper.appendChild(modalFormMessageLabel);
-
-    const modalFormMessageTextarea = document.createElement("textarea");
-    modalFormMessageTextarea.className = "form-field contactform-modal-field";
-    modalFormMessageTextarea.rows = 4;
-    modalFormMessageTextarea.ariaLabel = "Message";
-    modalWrapper.appendChild(modalFormMessageTextarea);
-
-    const modalFormSend = document.createElement("button");
-    modalFormSend.className = "button contactform-modal-button";
-    modalFormSend.innerText = "Envoyer";
-    modalWrapper.appendChild(modalFormSend);
-
-    modalFormSend.addEventListener("click", (e) => {
-      e.preventDefault(true);
-    });
-
-    modalClose.addEventListener("click", (e) => {
-      this.close();
-    });
-
-    return modal;
+    this.createListeners();
   }
 
   /**
    * Open the contact form popup
    */
   open () {
-    this.close();
-
-    this.form = this.getElement();
+    this.wrapper.className = "contactform-wrapper open";
 
     // Make all body elements unfocusable and save their tab index (temporary)
     document.querySelectorAll("body *").forEach((domElement) => {
@@ -118,8 +30,6 @@ class ContactForm { // eslint-disable-line no-unused-vars
       }
     });
 
-    document.body.appendChild(this.form);
-
     document.body.style.position = "fixed";
   }
 
@@ -127,7 +37,7 @@ class ContactForm { // eslint-disable-line no-unused-vars
    * Close the contact form popup
    */
   close () {
-    this.form && this.form.remove();
+    this.wrapper.className = "contactform-wrapper";
 
     // Make all body elements tab index back (and make them focusable back)
     document.querySelectorAll("body *").forEach((domElement) => {
@@ -139,5 +49,38 @@ class ContactForm { // eslint-disable-line no-unused-vars
     });
 
     document.body.style.position = "auto";
+  }
+
+  /**
+   * Handle the form submit event
+   * @param {SubmitEvent} e -
+   */
+  handleSubmit (e) {
+    e.preventDefault();
+
+    const firstname = this.wrapper.querySelector("[name='firstname']").value;
+    const lastname = this.wrapper.querySelector("[name='lastname']").value;
+    const email = this.wrapper.querySelector("[name='email']").value;
+    const message = this.wrapper.querySelector("[name='message']").value;
+
+    console.log(firstname, lastname, email, message);
+  }
+
+  /**
+   * Create events listeners for contact form
+   */
+  createListeners () {
+    this.handler.addEventListener("click", (e) => {
+      this.open();
+    });
+
+    this.wrapper.querySelector("#contact-form-close").addEventListener("click", (e) => {
+      e.preventDefault();
+      this.close();
+    });
+
+    this.wrapper.querySelector("form").addEventListener("submit", (e) => {
+      this.handleSubmit(e);
+    });
   }
 }

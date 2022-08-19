@@ -1,12 +1,13 @@
 // dom variables - to edit with photographer infos
-const pName = document.querySelector("#auto-name");
+const pName = document.querySelectorAll("#auto-name");
 const caption = document.querySelector("#auto-caption");
 const tags = document.querySelector("#auto-tags");
 const image = document.querySelector("#auto-image");
 const medias = document.querySelector("#auto-medias");
 const contactButton = document.querySelector("#contact-button");
-const totalLikes = document.querySelector("#photographer-stats-like")
-const priceSummary = document.querySelector("#photographer-stats-price")
+const totalLikes = document.querySelector("#photographer-stats-like");
+const priceSummary = document.querySelector("#photographer-stats-price");
+const contactForm = document.querySelector("#contact-form");
 
 // eslint-disable-next-line no-undef
 const lightbox = new Lightbox({});
@@ -15,7 +16,7 @@ const lightbox = new Lightbox({});
  * Get photographer id from URL
  * @returns {string} - returns photographer's id
  */
-function getPagePhotographerId() {
+function getPagePhotographerId () {
   // remove URL and keep only params
   let paramsString = window.location.href.split("?");
   paramsString.shift();
@@ -38,7 +39,7 @@ function getPagePhotographerId() {
  * @param {string} MediaData.date - Media's creation date
  * @returns {Element}
  */
-function mediaElementTemplate({ title, likes, name, filename, type, alt, date }) {
+function mediaElementTemplate ({ title, likes, name, filename, type, alt, date }) {
   const element = document.createElement("li");
   element.className = "medias-item";
   element.setAttribute("filter-title", title);
@@ -102,13 +103,17 @@ function mediaElementTemplate({ title, likes, name, filename, type, alt, date })
         });
 
         // Count total likes
-        let totalLikesCount = 0
-        targetMedias.map((el) => totalLikesCount += el.likes)
+        let totalLikesCount = 0;
+        targetMedias.forEach(function (el) {
+          totalLikesCount += el.likes;
+        });
 
         // Edit photographer infos in the DOM
-        pName.innerText = targetProfile.name;
-        priceSummary.innerText = targetProfile.price
-        totalLikes.innerText = totalLikesCount
+        pName.forEach(function (el) {
+          el.innerText = targetProfile.name;
+        });
+        priceSummary.innerText = targetProfile.price;
+        totalLikes.innerText = totalLikesCount;
         caption.innerHTML = `${targetProfile.city}, ${targetProfile.country} <span>${targetProfile.tagline}</span>`;
         image.src = `img/Sample Photos/Photographers ID Photos/${targetProfile.portrait}`;
         image.alt = targetProfile.alt;
@@ -129,9 +134,9 @@ function mediaElementTemplate({ title, likes, name, filename, type, alt, date })
         document.querySelector("#filter-selector").tabIndex = 0;
 
         // eslint-disable-next-line no-unused-vars
-        const contactform = new ContactForm({ // eslint-disable-line no-undef
-          name: targetProfile.name,
-          handler: contactButton
+        const contactFormObject = new ContactForm({ // eslint-disable-line no-undef
+          handler: contactButton,
+          wrapper: contactForm
         });
 
         const lightboxMedias = [];

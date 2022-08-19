@@ -664,10 +664,13 @@ main {
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   background-color: #c4c4c457;
+}
+.contactform-wrapper.open {
+  display: flex;
 }
 .contactform-modal {
   width: 700px;
