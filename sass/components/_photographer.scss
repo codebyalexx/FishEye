@@ -118,11 +118,15 @@
     }
 
     @include laptop-only{
+      display: inline-flex;
+
       .button {
         position: fixed;
-        bottom: 50px;
+        bottom: 30px;
         left: 50%;
         transform: translate(-50%, 0);
+        font-size: 18px;
+        padding: 5px 15px;
       }
     }
   }

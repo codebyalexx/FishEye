@@ -432,11 +432,16 @@ main {
   }
 }
 @media screen and (max-width: 1024px) {
+  .photographer-header div {
+    display: inline-flex;
+  }
   .photographer-header div .button {
     position: fixed;
-    bottom: 50px;
+    bottom: 30px;
     left: 50%;
     transform: translate(-50%, 0);
+    font-size: 18px;
+    padding: 5px 15px;
   }
 }
 .photographer-header-title {
