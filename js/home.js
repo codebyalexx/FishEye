@@ -38,7 +38,7 @@ function photographerElementTemplate ({
     const tag = tags[index];
 
     const tagElement = document.createElement("li");
-    tagElement.innerHTML = `<span class="tag"
+    tagElement.innerHTML = `<span class="tag" data-tag-name="${tag}"
     ><a href="#!" class="tag-text" tabindex="0" lang="en">#${tag}</a></span
   >`;
 
@@ -113,3 +113,40 @@ function photographerElementTemplate ({
       );
     });
 })();
+
+// Filter variables
+let tagsFilters = [];
+
+/**
+ * Filter photographers list by selected tags in the navbar
+ */
+function filterPhotographers () {
+  photographerList.querySelectorAll(".photographer-list-item").forEach((photographerElement) => {
+    // get photographer tags
+    const photographerTags = [];
+    photographerElement.querySelectorAll("[data-tag-name]").forEach(function (el) {
+      photographerTags.push(el.dataset.tagName);
+    });
+
+    // Check photographer contains all enabled tags for filter
+    const photographerHasTags = tagsFilters.every((v) => photographerTags.includes(v));
+    if (photographerHasTags) {
+      photographerElement.classList = "photographer-list-item";
+    } else {
+      photographerElement.classList = "photographer-list-item hidden";
+    }
+  });
+}
+
+// Create tags filter listener
+document.querySelectorAll("[data-tags-filter='true']").forEach((tagElement) => {
+  tagElement.addEventListener("click", function (e) {
+    // Enable or disable tag
+    const enabled = tagElement.classList.contains("active");
+    tagElement.classList[enabled ? "remove" : "add"]("active");
+    !enabled ? tagsFilters.push(tagElement.dataset.tagValue) : tagsFilters = tagsFilters.filter((x) => x !== tagElement.dataset.tagValue);
+
+    // Filter photographers list
+    filterPhotographers();
+  });
+});

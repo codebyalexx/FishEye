@@ -32,4 +32,9 @@
       color: $color-primary-1;
     }
   }
+
+  &.active {
+    background-color: $color-primary-1;
+    color: $color-primary-1-background;
+  }
 }

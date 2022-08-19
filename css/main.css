@@ -328,27 +328,22 @@ main {
 .photographer-list-item {
   flex: 1 0 33%;
   width: 33%;
+  margin-bottom: 80px;
+}
+.photographer-list-item.hidden {
+  display: none;
 }
 @media screen and (max-width: 1024px) {
   .photographer-list-item {
     flex: 1 0 50%;
     width: 50%;
   }
-  .photographer-list-item:nth-child(n+3) {
-    margin-top: 80px;
-  }
-}
-.photographer-list-item:nth-child(n+4) {
-  margin-top: 80px;
 }
 @media screen and (max-width: 760px) {
   .photographer-list-item {
     flex: 1 0 100%;
     width: 100%;
-    margin-top: 80px;
-  }
-  .photographer-list-item:nth-child(0) {
-    margin-top: 0;
+    margin-bottom: 80px;
   }
 }
 
@@ -637,6 +632,10 @@ main {
 .tag--alt:hover {
   background-color: #fff;
   color: #901c1c;
+}
+.tag.active {
+  background-color: #901c1c;
+  color: #fff;
 }
 
 .form-field {
