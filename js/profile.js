@@ -163,18 +163,18 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date, 
           const media = targetMedias[index];
 
           // Adding medias to medias list
-          medias.appendChild(
-            mediaElementTemplate({
-              filename: media.image || media.video,
-              type: media.image ? "image" : "video",
-              likes: media.likes,
-              name: targetProfile.name,
-              title: media.title,
-              alt: media.alt,
-              date: media.date,
-              index
-            })
-          );
+          // eslint-disable-next-line new-cap,no-undef
+          const mediaObj = new mediaFactory({
+            filename: media.image || media.video,
+            type: media.image ? "image" : "video",
+            likes: media.likes,
+            name: targetProfile.name,
+            title: media.title,
+            alt: media.alt,
+            date: media.date,
+            index
+          });
+          medias.innerHTML += mediaObj.render();
 
           // Add media to the lightbox
           const lightboxMediaParameters = {
