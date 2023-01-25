@@ -4,7 +4,7 @@ const photographerList = document.querySelector("#photographer-list");
 // Catch photographers data from mocked local file (TODO: replace local path with API endpoint)
 (function () {
   // eslint-disable-next-line no-undef
-  request("/data/FishEyeData.json")
+  request("data/FishEyeData.json")
     // treat promise data
     .then((data) => {
       try {
