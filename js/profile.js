@@ -105,7 +105,7 @@ function mediaElementTemplate ({ title, likes, name, filename, type, alt, date, 
 
 (function () {
   // eslint-disable-next-line no-undef
-  request("/data/FishEyeData.json", "GET")
+  request("data/FishEyeData.json", "GET")
     .then((data) => {
       try {
         data = JSON.parse(data);
